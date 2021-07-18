@@ -16,10 +16,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
+    final view = MediaQuery.of(context).viewInsets;
+    debugPrint(view.bottom.toString());
     return Scaffold(
       backgroundColor: kLoginBackgroundColor,
       body: Stack(
-        fit: StackFit.expand,
+        // fit: StackFit.expand,
         alignment: Alignment.topCenter,
         children: [
           LoginBackground(text: l10n.loginPageText),
