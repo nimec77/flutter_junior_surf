@@ -6,9 +6,11 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_junior_surf/counter/counter.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
+import 'package:flutter_junior_surf/login/login.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'constants.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -16,16 +18,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        accentColor: const Color(0xFF13B9FF),
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: kAppThemeData,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const LoginPage(),
     );
   }
 }

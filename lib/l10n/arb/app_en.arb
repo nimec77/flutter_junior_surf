@@ -1,7 +1,19 @@
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+  "@@locale": "en",
+  "loginPageText": "Login",
+  "@loginPageText": {
+    "description": "Text shown on Login Page"
+  },
+  "loginButtonText": "Enter",
+  "@loginButtonText": {
+    "description": "Text shown on Login Button"
+  },
+  "loginEmailText": "Email",
+  "@loginEmailText": {
+    "description": "Text shown on Email Text Field"
+  },
+  "loginPasswordText": "Password",
+  "@loginPasswordText": {
+    "description": "Text shown on Password Text Field"
+  }
 }

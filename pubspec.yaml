@@ -12,16 +12,20 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   bloc: ^7.0.0
-  flutter_bloc: ^7.0.0
+  flutter_bloc: ^7.0.1
   intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^8.0.0
-  mocktail: ^0.1.0
-  very_good_analysis: ^2.1.0
+  bloc_test: ^8.0.2
+  mocktail: ^0.1.4
+  very_good_analysis: ^2.1.2
 
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - background.png
+
