@@ -45,7 +45,8 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           LoginBackground(text: l10n.loginPageText),
           AnimatedContainer(
-            duration: const Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: _top),
             child: NotificationListener(
@@ -64,15 +65,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   double _calcTopForLoginCart(Size cartSize, double bottom) {
-    debugPrint('LoginCart size:$cartSize');
+    // debugPrint('LoginCart size:$cartSize');
     final bottom = MediaQuery.of(context).viewInsets.bottom;
-    debugPrint('Bottom:$bottom');
+    // debugPrint('Bottom:$bottom');
     final size = helper.getSize(context);
     if (size != Size.zero) {
       final height = size.height - bottom - kDefaultTop;
       if (height < cartSize.height) {
         final top = size.height - cartSize.height - kBottomMargin - bottom;
-        debugPrint('Top:$top');
+        // debugPrint('Top:$top');
         return top;
       }
     }
