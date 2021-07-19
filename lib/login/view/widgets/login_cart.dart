@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
-import 'package:flutter_junior_surf/login/view/notifications/login_cart_notification.dart';
 
 import '../../login.dart';
-import '../helper.dart' as helper;
 
 class LoginCart extends StatefulWidget {
   const LoginCart({Key? key}) : super(key: key);
@@ -14,15 +11,10 @@ class LoginCart extends StatefulWidget {
 }
 
 class _LoginCartState extends State<LoginCart> {
+
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
-      final size = helper.getSize(context);
-      if (size != Size.zero) {
-        LoginCartNotification(size).dispatch(context);
-      }
-    });
   }
 
   @override
