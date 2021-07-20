@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../constants.dart';
 
@@ -15,7 +16,7 @@ class LoginBackground extends StatelessWidget {
           clipper: ClipPathClass(),
           child: Container(
             width: double.infinity,
-            height: 380,
+            height: 48.6.h,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(kBackgroundImage),
@@ -23,7 +24,7 @@ class LoginBackground extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.only(top: 125, left: 25),
+              padding: EdgeInsets.only(top: 18.h, left: 6.w),
               child: Text(
                 text,
                 style: Theme.of(context).textTheme.headline4!.copyWith(

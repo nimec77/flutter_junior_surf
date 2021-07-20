@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../login.dart';
 
@@ -25,9 +26,9 @@ class _LoginCartState extends State<LoginCart> {
       elevation: 10,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        width: 327,
-        height: 348,
-        padding: const EdgeInsets.symmetric(horizontal: 50),
+        width: 87.w,
+        height: 52.h,
+        padding: EdgeInsets.symmetric(horizontal: 12.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,18 +37,18 @@ class _LoginCartState extends State<LoginCart> {
                 labelText: l10n.loginEmailText,
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 5.h),
             TextField(
               decoration: InputDecoration(
                 labelText: l10n.loginPasswordText,
               ),
             ),
-            const SizedBox(height: 50),
+            SizedBox(height: 7.h),
             LoginButton(
               onPressed: () {},
               child: Text(
                 l10n.loginButtonText,
-                style: const TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 13.sp),
               ),
             ),
           ],
