@@ -12,7 +12,6 @@ class LoginCart extends StatefulWidget {
 }
 
 class _LoginCartState extends State<LoginCart> {
-
   @override
   void initState() {
     super.initState();
@@ -26,8 +25,8 @@ class _LoginCartState extends State<LoginCart> {
       elevation: 10,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        width: 87.w,
-        height: 52.h,
+        width: kLoginCartSize.width.w,
+        height: kLoginCartSize.height.h,
         padding: EdgeInsets.symmetric(horizontal: 12.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,12 +42,12 @@ class _LoginCartState extends State<LoginCart> {
                 labelText: l10n.loginPasswordText,
               ),
             ),
-            SizedBox(height: 7.h),
+            SizedBox(height: 7.5.h),
             LoginButton(
               onPressed: () {},
               child: Text(
                 l10n.loginButtonText,
-                style: TextStyle(fontSize: 13.sp),
+                style: const TextStyle(fontSize: 16),
               ),
             ),
           ],

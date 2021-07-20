@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/view/common_widget/login_background.dart';
-import 'package:flutter_junior_surf/login/view/renders/measurable_widget.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../login.dart';
@@ -16,14 +15,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late double _top;
-  late Size _cartSize;
   late double _bottom;
 
   @override
   void initState() {
     super.initState();
     _top = kDefaultTop.h;
-    _cartSize = Size.zero;
     _bottom = 0.0;
   }
 
@@ -35,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
     if (newBottom != _bottom) {
       setState(() {
         _bottom = newBottom;
-        _top = _calcTopForLoginCart(_cartSize, _bottom);
+        _top = _calcTopForLoginCart(_bottom);
       });
     }
     return Scaffold(
@@ -50,19 +47,14 @@ class _LoginPageState extends State<LoginPage> {
             curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: _top),
-            child: MeasurableWidget(
-              onChange: (size) => setState(() {
-                _cartSize = size;
-              }),
-              child: const LoginCart(),
-            ),
+            child: const LoginCart(),
           ),
         ],
       ),
     );
   }
 
-  double _calcTopForLoginCart(Size cartSize, double bottom) {
+  double _calcTopForLoginCart(double bottom) {
     // debugPrint('LoginCart size:$cartSize');
     // final newBottom = MediaQuery.of(context).viewInsets.bottom;
     // debugPrint('Bottom:$bottom, $newBottom');
@@ -71,9 +63,10 @@ class _LoginPageState extends State<LoginPage> {
       return kDefaultTop.h;
     }
 
+    final cartHeight = kLoginCartSize.height.h;
     final height = size.height - kBottomMargin.h - kDefaultTop.h - bottom;
-    if (height < cartSize.height) {
-      final top = size.height - cartSize.height - kBottomMargin.h - bottom;
+    if (height < kLoginCartSize.height.h) {
+      final top = size.height - cartHeight - kBottomMargin.h - bottom;
       // debugPrint('Top:$top');
       return top;
     }
