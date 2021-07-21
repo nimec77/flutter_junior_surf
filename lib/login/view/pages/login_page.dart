@@ -4,7 +4,6 @@ import 'package:flutter_junior_surf/login/view/common_widget/login_background.da
 import 'package:sizer/sizer.dart';
 
 import '../../login.dart';
-import '../helper.dart' as helper;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -55,19 +54,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   double _calcTopForLoginCart(double bottom) {
-    // debugPrint('LoginCart size:$cartSize');
-    // final newBottom = MediaQuery.of(context).viewInsets.bottom;
-    // debugPrint('Bottom:$bottom, $newBottom');
-    final size = helper.getSize(context);
-    if (size == Size.zero) {
-      return kDefaultTop.h;
-    }
-
     final cartHeight = kLoginCartSize.height.h;
-    final height = size.height - kBottomMargin.h - kDefaultTop.h - bottom;
+    final height = 100.h - kBottomMargin.h - kDefaultTop.h - bottom;
     if (height < kLoginCartSize.height.h) {
-      final top = size.height - cartHeight - kBottomMargin.h - bottom;
-      // debugPrint('Top:$top');
+      final top = 100.h - cartHeight - kBottomMargin.h - bottom;
       return top;
     }
 

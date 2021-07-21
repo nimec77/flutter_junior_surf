@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({Key? key, required this.child, this.onPressed}) : super(key: key);
@@ -12,7 +13,7 @@ class LoginButton extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(
-          const Size(double.infinity, 48),
+          Size(double.infinity, 7.h),
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(

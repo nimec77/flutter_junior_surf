@@ -44,10 +44,10 @@ class _LoginCartState extends State<LoginCart> {
             ),
             SizedBox(height: 7.5.h),
             LoginButton(
-              onPressed: () {},
+              onPressed: null,
               child: Text(
                 l10n.loginButtonText,
-                style: const TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 14.sp),
               ),
             ),
           ],
