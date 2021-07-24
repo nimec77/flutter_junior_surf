@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../helpers/helpers.dart';
 
 void main() {
-  group('Login Background test', () {
+  group('LoginBackground test', () {
     testWidgets('Render LoginBackground widget', (tester) async {
       late final AppLocalizations l10n;
       final widget = Builder(builder: (context) {
@@ -19,8 +19,6 @@ void main() {
 
       final loginPageTextFinder = find.text(l10n.loginPageText);
       expect(loginPageTextFinder, findsOneWidget);
-      final loginPageTextWidget = tester.firstWidget(loginPageTextFinder) as Text;
-      expect(loginPageTextWidget.data, l10n.loginPageText);
     });
   });
 }

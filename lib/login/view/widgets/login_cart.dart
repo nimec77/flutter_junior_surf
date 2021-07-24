@@ -32,18 +32,21 @@ class _LoginCartState extends State<LoginCart> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              key: kLoginEmailKey,
               decoration: InputDecoration(
                 labelText: l10n.loginEmailText,
               ),
             ),
             SizedBox(height: 5.h),
             TextField(
+              key: kLoginPasswordKey,
               decoration: InputDecoration(
                 labelText: l10n.loginPasswordText,
               ),
             ),
             SizedBox(height: 7.5.h),
             LoginButton(
+              key: kLoginButtonKey,
               onPressed: null,
               child: Text(
                 l10n.loginButtonText,
