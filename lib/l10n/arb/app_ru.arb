@@ -2,18 +2,18 @@
   "@@locale": "ru",
   "loginPageText": "Вход",
   "@loginPageText": {
-    "description": "Текст, отображаемый на странице входа"
+    "description": "Text shown on Login Page"
   },
   "loginButtonText": "Войти",
   "@loginButtonText": {
-    "description": "Текст, отображаемый на кнопке входа"
+    "description": "Text shown on Login Button"
   },
   "loginEmailText": "Email",
   "@loginEmailText": {
-    "description": "Текст, отображаемый на поле ввода Email"
+    "description": "Text shown on Email Text Field"
   },
   "loginPasswordText": "Пароль",
   "@loginPasswordText": {
-    "description": "Текст, отображаемый на поле ввода пароля"
+    "description": "Text shown on Password Text Field"
   }
 }
