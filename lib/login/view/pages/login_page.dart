@@ -18,9 +18,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    super.initState();
     _top = kDefaultTop.h;
     _bottom = 0.0;
+    super.initState();
   }
 
   @override
