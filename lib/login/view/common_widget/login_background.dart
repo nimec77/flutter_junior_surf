@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_junior_surf/login/view/constants.dart';
 import 'package:sizer/sizer.dart';
 
-import '../constants.dart';
 
 class LoginBackground extends StatelessWidget {
   const LoginBackground({Key? key, required this.text}) : super(key: key);
@@ -10,32 +10,34 @@ class LoginBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipPath(
-          clipper: ClipPathClass(),
-          child: Container(
-            width: double.infinity,
-            height: 56.3.h,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(kBackgroundImage),
-                fit: BoxFit.cover,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ClipPath(
+            clipper: ClipPathClass(),
+            child: Container(
+              width: double.infinity,
+              height: 56.3.h,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(kBackgroundImage),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(top: 18.h, left: 6.w),
-              child: Text(
-                text,
-                style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
+              child: Padding(
+                padding: EdgeInsets.only(top: 18.h, left: 6.w),
+                child: Text(
+                  text,
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
