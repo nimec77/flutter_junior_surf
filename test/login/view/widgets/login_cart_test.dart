@@ -11,7 +11,7 @@ void main() {
       late final AppLocalizations l10n;
       final widget = Builder(builder: (context) {
         l10n = context.l10n;
-        return const LoginCart();
+        return LoginCart();
       });
       await tester.pumpSizerAndScaffold(widget);
 

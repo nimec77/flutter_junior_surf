@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_junior_surf/login/view/constants.dart';
+import 'package:flutter_junior_surf/login/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
 

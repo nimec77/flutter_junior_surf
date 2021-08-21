@@ -15,5 +15,13 @@
   "loginPasswordText": "Password",
   "@loginPasswordText": {
     "description": "Text shown on Password Text Field"
+  },
+  "loginEmailError": "Invalid email",
+  "@loginEmailError": {
+    "description": "Error text if email invalid"
+  },
+  "loginPasswordError": "Can't be less than 8 letters",
+  "@loginPasswordError": {
+    "description": "Error text if password is less than 8 letters"
   }
 }

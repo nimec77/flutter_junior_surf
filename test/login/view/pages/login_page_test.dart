@@ -1,5 +1,4 @@
 import 'package:flutter_junior_surf/login/login.dart';
-import 'package:flutter_junior_surf/login/view/common_widget/login_background.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../helpers/helpers.dart';

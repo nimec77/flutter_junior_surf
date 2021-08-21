@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
-import 'package:flutter_junior_surf/login/view/common_widget/login_background.dart';
+import 'package:flutter_junior_surf/login/login.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -46,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: _top),
-            child: const LoginCart(),
+            child: LoginCart(),
           ),
         ],
       ),

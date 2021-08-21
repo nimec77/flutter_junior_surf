@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({Key? key, required this.child, this.onPressed}) : super(key: key);
+  const LoginButton({Key? key, required this.child, required this.enabled, this.onPressed}) : super(key: key);
 
   final Widget child;
+  final bool enabled;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: enabled ? onPressed : null,
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(
           Size(double.infinity, 7.h),

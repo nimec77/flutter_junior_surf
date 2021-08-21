@@ -15,5 +15,13 @@
   "loginPasswordText": "Пароль",
   "@loginPasswordText": {
     "description": "Text shown on Password Text Field"
+  },
+  "loginEmailError": "Неверный формат электронной почты",
+  "@loginEmailError": {
+    "description": "Error text if email invalid"
+  },
+  "loginPasswordError": "Не может быть меньше 8 букв",
+  "@loginPasswordError": {
+    "description": "Error text if password is less than 8 letters"
   }
 }
