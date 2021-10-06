@@ -5,8 +5,13 @@ import 'package:flutter_junior_surf/login/presentation/common_widget/login_butto
 import 'package:flutter_junior_surf/login/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
+typedef OnLoginPressed = void Function(String email, String password);
+
 class LoginCart extends StatefulWidget with EmailAndPasswordValidators {
-  LoginCart({Key? key}) : super(key: key);
+  LoginCart({Key? key, required this.enabled, required this.onLoginPressed}) : super(key: key);
+
+  final bool enabled;
+  final OnLoginPressed onLoginPressed;
 
   @override
   State<LoginCart> createState() => _LoginCartState();
@@ -55,6 +60,7 @@ class _LoginCartState extends State<LoginCart> {
               children: [
                 TextFormField(
                   key: kLoginEmailKey,
+                  enabled: widget.enabled,
                   controller: _emailController,
                   focusNode: _emailFocusNode,
                   autocorrect: false,
@@ -83,6 +89,7 @@ class _LoginCartState extends State<LoginCart> {
                 SizedBox(height: 5.h),
                 TextFormField(
                   key: kLoginPasswordKey,
+                  enabled: widget.enabled,
                   controller: _passwordController,
                   focusNode: _passwordFocusNode,
                   autocorrect: false,
@@ -106,8 +113,8 @@ class _LoginCartState extends State<LoginCart> {
                 SizedBox(height: 7.5.h),
                 LoginButton(
                   key: kLoginButtonKey,
-                  enabled: _formIsValidated(),
-                  onPressed: () {},
+                  enabled: widget.enabled && _formIsValidated(),
+                  onPressed:() => widget.onLoginPressed(_emailController.text, _passwordController.text),
                   child: Text(
                     l10n.loginButtonText,
                     style: TextStyle(fontSize: 14.sp),

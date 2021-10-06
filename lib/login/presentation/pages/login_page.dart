@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/login.dart';
+import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key, required this.authBloc}) : super(key: key);
+
+  final AuthBloc authBloc;
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -45,7 +48,21 @@ class _LoginPageState extends State<LoginPage> {
             curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: _top),
-            child: LoginCart(),
+            child: BlocBuilder<AuthBloc, AuthState>(
+              bloc: widget.authBloc,
+              builder: (context, state) {
+                final enabled = state.maybeMap(
+                  notAuthorized: (_) => true,
+                  failed: (_) => true,
+                  orElse: () => false,
+                );
+                return LoginCart(
+                    enabled: enabled,
+                    onLoginPressed: (email, password) {
+                      widget.authBloc.add(AuthEvent.loginStarted(email: email, password: password));
+                    });
+              },
+            ),
           ),
         ],
       ),

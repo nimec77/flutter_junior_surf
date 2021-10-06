@@ -1,12 +1,30 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_junior_surf/login/login.dart';
+import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../helpers/helpers.dart';
 
+class MockAuthBloc extends MockBloc<AuthEvent, AuthState> implements AuthBloc {}
+
 void main() {
+  late final MockAuthBloc mockAuthBlock;
+
+  setUpAll(() {
+    registerFallbackValue<AuthState>(const AuthState.notAuthorized());
+    registerFallbackValue<AuthEvent>(const AuthEvent.loginStarted(email: 'email', password: 'password'));
+    mockAuthBlock = MockAuthBloc();
+  });
+
   group('LoginPage test', () {
     testWidgets('LoginPage render test', (tester) async {
-      await tester.pumpSizerAndScaffold(const LoginPage());
+      whenListen<AuthState>(
+        mockAuthBlock,
+        Stream.fromIterable([]),
+        initialState: const AuthState.notAuthorized(),
+      );
+      await tester.pumpSizerAndScaffold(LoginPage(authBloc: mockAuthBlock));
 
       final loginBackgroundFinder = find.byType(LoginBackground);
       expect(loginBackgroundFinder, findsOneWidget);

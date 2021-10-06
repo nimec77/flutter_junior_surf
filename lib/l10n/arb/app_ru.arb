@@ -23,5 +23,9 @@
   "loginPasswordError": "Не может быть меньше 8 букв",
   "@loginPasswordError": {
     "description": "Error text if password is less than 8 letters"
+  },
+  "authorisationError": "Ошибка авторизации",
+  "@authorisationError": {
+    "description": "Authorisation Error"
   }
 }
