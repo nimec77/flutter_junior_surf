@@ -23,13 +23,13 @@ void main() {
 
       final loginEmailFinder = find.byKey(kLoginEmailKey);
       expect(loginEmailFinder, findsOneWidget);
-      final emailTextFieldWidget = tester.widget<TextField>(loginEmailFinder);
-      expect(emailTextFieldWidget.decoration?.labelText, l10n.loginEmailText);
+      final emailTextFieldWidget = tester.findChildWidget<TextField>(loginEmailFinder);
+      expect(emailTextFieldWidget?.decoration?.labelText, l10n.loginEmailText);
 
       final loginPasswordFinder = find.byKey(kLoginPasswordKey);
       expect(loginPasswordFinder, findsOneWidget);
-      final loginPasswordFieldWidget = tester.widget<TextField>(loginPasswordFinder);
-      expect(loginPasswordFieldWidget.decoration?.labelText, l10n.loginPasswordText);
+      final loginPasswordFieldWidget = tester.findChildWidget<TextField>(loginPasswordFinder);
+      expect(loginPasswordFieldWidget?.decoration?.labelText, l10n.loginPasswordText);
 
       final loginButtonFinder = find.byKey(kLoginButtonKey);
       expect(loginButtonFinder, findsOneWidget);
