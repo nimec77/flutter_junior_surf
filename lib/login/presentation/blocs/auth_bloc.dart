@@ -25,13 +25,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(
       result.fold(
         (error) => AuthState.failed(error),
-        (loggedIn) => loggedIn ? const AuthState.success() : AuthState.failed(StateError('Authorisation Error')),
+        (loggedIn) => loggedIn ? const AuthState.success() : AuthState.failed(StateError('Authorization Error')),
       ),
     );
   }
 
   Future<void> _mapLogoutToState(AuthEventLogout event, Emitter<AuthState> emit) async {
     emit(const AuthState.inProgress());
+    await authRepository.logout();
     emit(const AuthState.notAuthorized());
   }
 }

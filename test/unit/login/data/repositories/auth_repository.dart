@@ -40,6 +40,7 @@ void main() {
 
       final result = authRepository.logout();
       expect(result, isA<Future<void>>());
+      verify(mockAuthProvider.logout).called(1);
     });
   });
 }
