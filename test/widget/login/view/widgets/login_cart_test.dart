@@ -3,7 +3,7 @@ import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/login.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../helpers/helpers.dart';
+import '../../../../helpers/helpers.dart';
 
 void main() {
   group('LoginCart test', () {
