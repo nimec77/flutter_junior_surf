@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_junior_surf/login/data/providers/auth_provider.dart';
 import 'package:flutter_junior_surf/login/data/repositories/auth_repository_imp.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -15,7 +16,7 @@ void main() {
     test('login success test', () async {
       when(() => mockAuthProvider.login(any(), any())).thenAnswer((_) => Future.value(const Right(true)));
 
-      final result = await authRepository.login('email', 'password');
+      final result = await authRepository.login(const Credentials(email: 'email', password: 'password'));
       expect(result, isA<EitherBool>());
       expect(result.isRight(), equals(true));
       expect(result | false, equals(true));
@@ -26,7 +27,7 @@ void main() {
       final error = StateError('Login Error');
       when(() => mockAuthProvider.login(any(), any())).thenAnswer((_) => Future.value(Left(error)));
 
-      final result = await authRepository.login('email', 'password');
+      final result = await authRepository.login(const Credentials(email: 'email', password: 'password'));
       expect(result, isA<EitherBool>());
       expect(result.isLeft(), equals(true));
       result.leftMap((l) {

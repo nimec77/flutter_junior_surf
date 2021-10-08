@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
@@ -21,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _mapLoginStartedToState(AuthEventLoginStated event, Emitter<AuthState> emit) async {
     emit(const AuthState.inProgress());
-    final result = await authRepository.login(event.email, event.password);
+    final result = await authRepository.login(event.credentials);
     emit(
       result.fold(
         (error) => AuthState.failed(error),

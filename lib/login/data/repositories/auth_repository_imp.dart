@@ -1,4 +1,5 @@
 import 'package:flutter_junior_surf/login/data/providers/auth_provider.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
 
 class AuthRepositoryImp implements AuthRepository {
@@ -6,8 +7,8 @@ class AuthRepositoryImp implements AuthRepository {
 
   final AuthProvider authProvider;
   @override
-  Future<EitherBool> login(String email, String password) {
-    return authProvider.login(email, password);
+  Future<EitherBool> login(Credentials credentials) {
+    return authProvider.login(credentials.email, credentials.password);
   }
 
   @override

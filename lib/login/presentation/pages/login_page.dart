@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/login.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -59,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 return LoginCart(
                     enabled: enabled,
                     onLoginPressed: (email, password) {
-                      widget.authBloc.add(AuthEvent.loginStarted(email: email, password: password));
+                      widget.authBloc.add(AuthEvent.loginStarted(Credentials(email: email, password: password)));
                     });
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/login.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,7 +14,7 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue<AuthState>(const AuthState.notAuthorized());
-    registerFallbackValue<AuthEvent>(const AuthEvent.loginStarted(email: 'email', password: 'password'));
+    registerFallbackValue<AuthEvent>(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password')));
     mockAuthBlock = MockAuthBloc();
   });
 

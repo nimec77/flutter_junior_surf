@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 
 typedef EitherBool = Either<Error, bool>;
 
 abstract class AuthRepository {
-  Future<EitherBool> login(String email, String password);
+  Future<EitherBool> login(Credentials credentials);
 
   Future<void> logout();
 }

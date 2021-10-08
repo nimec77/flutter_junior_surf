@@ -17,11 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
-  AuthEventLoginStated loginStarted(
-      {required String email, required String password}) {
+  AuthEventLoginStated loginStarted(Credentials credentials) {
     return AuthEventLoginStated(
-      email: email,
-      password: password,
+      credentials,
     );
   }
 
@@ -37,19 +35,19 @@ const $AuthEvent = _$AuthEventTearOff();
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) loginStarted,
+    required TResult Function(Credentials credentials) loginStarted,
     required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? loginStarted,
+    TResult Function(Credentials credentials)? loginStarted,
     TResult Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? loginStarted,
+    TResult Function(Credentials credentials)? loginStarted,
     TResult Function()? logout,
     required TResult orElse(),
   }) =>
@@ -95,7 +93,7 @@ abstract class $AuthEventLoginStatedCopyWith<$Res> {
   factory $AuthEventLoginStatedCopyWith(AuthEventLoginStated value,
           $Res Function(AuthEventLoginStated) then) =
       _$AuthEventLoginStatedCopyWithImpl<$Res>;
-  $Res call({String email, String password});
+  $Res call({Credentials credentials});
 }
 
 /// @nodoc
@@ -111,18 +109,13 @@ class _$AuthEventLoginStatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
+    Object? credentials = freezed,
   }) {
     return _then(AuthEventLoginStated(
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
+      credentials == freezed
+          ? _value.credentials
+          : credentials // ignore: cast_nullable_to_non_nullable
+              as Credentials,
     ));
   }
 }
@@ -130,34 +123,28 @@ class _$AuthEventLoginStatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthEventLoginStated implements AuthEventLoginStated {
-  const _$AuthEventLoginStated({required this.email, required this.password});
+  const _$AuthEventLoginStated(this.credentials);
 
   @override
-  final String email;
-  @override
-  final String password;
+  final Credentials credentials;
 
   @override
   String toString() {
-    return 'AuthEvent.loginStarted(email: $email, password: $password)';
+    return 'AuthEvent.loginStarted(credentials: $credentials)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is AuthEventLoginStated &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.password, password) ||
+            (identical(other.credentials, credentials) ||
                 const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                    .equals(other.credentials, credentials)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(password);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credentials);
 
   @JsonKey(ignore: true)
   @override
@@ -168,30 +155,30 @@ class _$AuthEventLoginStated implements AuthEventLoginStated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) loginStarted,
+    required TResult Function(Credentials credentials) loginStarted,
     required TResult Function() logout,
   }) {
-    return loginStarted(email, password);
+    return loginStarted(credentials);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? loginStarted,
+    TResult Function(Credentials credentials)? loginStarted,
     TResult Function()? logout,
   }) {
-    return loginStarted?.call(email, password);
+    return loginStarted?.call(credentials);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? loginStarted,
+    TResult Function(Credentials credentials)? loginStarted,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loginStarted != null) {
-      return loginStarted(email, password);
+      return loginStarted(credentials);
     }
     return orElse();
   }
@@ -229,12 +216,10 @@ class _$AuthEventLoginStated implements AuthEventLoginStated {
 }
 
 abstract class AuthEventLoginStated implements AuthEvent {
-  const factory AuthEventLoginStated(
-      {required String email,
-      required String password}) = _$AuthEventLoginStated;
+  const factory AuthEventLoginStated(Credentials credentials) =
+      _$AuthEventLoginStated;
 
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  Credentials get credentials => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthEventLoginStatedCopyWith<AuthEventLoginStated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -279,7 +264,7 @@ class _$AuthEventLogout implements AuthEventLogout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) loginStarted,
+    required TResult Function(Credentials credentials) loginStarted,
     required TResult Function() logout,
   }) {
     return logout();
@@ -288,7 +273,7 @@ class _$AuthEventLogout implements AuthEventLogout {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? loginStarted,
+    TResult Function(Credentials credentials)? loginStarted,
     TResult Function()? logout,
   }) {
     return logout?.call();
@@ -297,7 +282,7 @@ class _$AuthEventLogout implements AuthEventLogout {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? loginStarted,
+    TResult Function(Credentials credentials)? loginStarted,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
