@@ -12,8 +12,8 @@ class UsersRepositoryImp implements UsersRepository {
   @override
   Future<EitherUsers> fetchUsers() async {
     try {
-      final usersPod = await httpUsersProvider.fetchUsers(kUsersUrl);
-      return Right(usersPod.map((e) => e.toUser()));
+      final usersPods = await httpUsersProvider.fetchUsers(kUsersUrl);
+      return Right(usersPods.map((e) => e.toUser()));
     } on DioError catch (error) {
       return Left(error);
     }
