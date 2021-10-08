@@ -13,6 +13,7 @@ import 'package:flutter_junior_surf/app/route/app_router_delegate.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/data/providers/auth_provider.dart';
 import 'package:flutter_junior_surf/login/data/repositories/auth_repository_imp.dart';
+import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sizer/sizer.dart';
@@ -25,6 +26,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  late final AppUser _appUser;
   late final AuthBloc _authBloc;
   late final AppRouteBloc _appRouteBloc;
   late final AppRouterDelegate _appRouterDelegate;
@@ -32,7 +34,8 @@ class _AppState extends State<App> {
 
   @override
   void initState() {
-    _authBloc = AuthBloc(AuthRepositoryImp(AuthProvider()));
+    _appUser = AppUser(AuthRepositoryImp(AuthProvider()));
+    _authBloc = AuthBloc(_appUser);
     _appRouteBloc = AppRouteBloc(_authBloc);
     _appRouterDelegate = AppRouterDelegate(_appRouteBloc);
     _appRouteInformationParser = AppRouteInformationParser(_appRouteBloc);
@@ -44,6 +47,7 @@ class _AppState extends State<App> {
   void dispose() {
     _appRouteBloc.close();
     _authBloc.close();
+    _appUser.dispose();
     super.dispose();
   }
 

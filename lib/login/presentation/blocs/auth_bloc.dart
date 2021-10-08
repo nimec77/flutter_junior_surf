@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
-import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -13,27 +14,53 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc(this.authRepository) : super(const AuthState.notAuthorized()) {
+  AuthBloc(this.appUser) : super(const AuthState.notAuthorized()) {
+    _loggedInSubscription = appUser.loggedIn
+        .listen((isLoggedIn) => add(isLoggedIn ? const AuthEvent.loggedIn() : const AuthEvent.loggedOut()));
     on<AuthEventLoginStated>(_mapLoginStartedToState);
     on<AuthEventLogout>(_mapLogoutToState);
+    on<AuthEventLoggedIn>(_mapLoggedInToState);
+    on<AuthEventLoggedOut>(_mapLoggedOutToState);
   }
 
-  final AuthRepository authRepository;
+  final AppUser appUser;
+  late final StreamSubscription<bool> _loggedInSubscription;
+
+  @override
+  Future<void> close() {
+    _loggedInSubscription.cancel();
+    return super.close();
+  }
 
   Future<void> _mapLoginStartedToState(AuthEventLoginStated event, Emitter<AuthState> emit) async {
     emit(const AuthState.inProgress());
-    final result = await authRepository.login(event.credentials);
-    emit(
-      result.fold(
-        (error) => AuthState.failed(error),
-        (loggedIn) => loggedIn ? const AuthState.success() : AuthState.failed(StateError('Authorization Error')),
-      ),
+    final result = await appUser.login(event.credentials);
+    result.fold(
+      (error) => emit(AuthState.failed(error)),
+      (loggedIn) {
+        if (!loggedIn) {
+          emit(AuthState.failed(StateError('Authorization Error')));
+        }
+      },
     );
   }
 
   Future<void> _mapLogoutToState(AuthEventLogout event, Emitter<AuthState> emit) async {
     emit(const AuthState.inProgress());
-    await authRepository.logout();
-    emit(const AuthState.notAuthorized());
+    await appUser.logout();
+  }
+
+  Future<void> _mapLoggedInToState(AuthEventLoggedIn event, Emitter<AuthState> emit) async {
+    if (state is! AuthStateSuccess) {
+      emit(const AuthState.success());
+    }
+  }
+
+  Future<void> _mapLoggedOutToState(AuthEventLoggedOut event, Emitter<AuthState> emit) async {
+    state.maybeMap(
+      success: (_) => emit(const AuthState.notAuthorized()),
+      inProgress: (_) => emit(const AuthState.notAuthorized()),
+      orElse: () {},
+    );
   }
 }

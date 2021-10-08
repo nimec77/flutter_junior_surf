@@ -7,7 +7,7 @@ class AppUser {
   AppUser(this.authRepository) {
     _loggedIn = StreamController.broadcast(
       onListen: _onLoggedInListen
-    )..add(credentials is! EmptyCredentials);
+    );
   }
 
   final AuthRepository authRepository;
