@@ -1,0 +1,1 @@
+const kUsersUrl = 'https://jsonplaceholder.typicode.com/users';

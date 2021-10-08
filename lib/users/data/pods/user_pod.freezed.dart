@@ -221,7 +221,7 @@ class _$UserPodDefaultCopyWithImpl<$Res> extends _$UserPodCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserPodDefault implements UserPodDefault {
+class _$UserPodDefault extends UserPodDefault {
   const _$UserPodDefault(
       {required this.id,
       required this.username,
@@ -229,7 +229,8 @@ class _$UserPodDefault implements UserPodDefault {
       required this.address,
       required this.phone,
       required this.website,
-      required this.company});
+      required this.company})
+      : super._();
 
   factory _$UserPodDefault.fromJson(Map<String, dynamic> json) =>
       _$$UserPodDefaultFromJson(json);
@@ -299,7 +300,7 @@ class _$UserPodDefault implements UserPodDefault {
   }
 }
 
-abstract class UserPodDefault implements UserPod {
+abstract class UserPodDefault extends UserPod {
   const factory UserPodDefault(
       {required int id,
       required String username,
@@ -308,6 +309,7 @@ abstract class UserPodDefault implements UserPod {
       required String phone,
       required String website,
       required Company company}) = _$UserPodDefault;
+  const UserPodDefault._() : super._();
 
   factory UserPodDefault.fromJson(Map<String, dynamic> json) =
       _$UserPodDefault.fromJson;

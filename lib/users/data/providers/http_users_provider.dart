@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_junior_surf/login/data/pods/user_pod.dart';
+import 'package:flutter_junior_surf/users/data/pods/user_pod.dart';
 
 class HttpUsersProvider {
   Future<Iterable<UserPod>> fetchUsers(String url) async {

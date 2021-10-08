@@ -1,4 +1,4 @@
-import 'package:flutter_junior_surf/login/data/pods/geo_pod.dart';
+import 'package:flutter_junior_surf/users/data/pods/geo_pod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'address_pod.freezed.dart';
