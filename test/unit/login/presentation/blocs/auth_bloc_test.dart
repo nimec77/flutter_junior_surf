@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
 import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
@@ -36,7 +37,6 @@ class MockAppUser extends Mock implements AppUser {
 
 void main() {
   final mockAppUser = MockAppUser();
-  final loginError = StateError('Login Failure');
 
   setUpAll(() {
     registerFallbackValue<Credentials>(const Credentials(email: 'email', password: 'password'));
@@ -88,14 +88,15 @@ void main() {
     blocTest<AuthBloc, AuthState>(
       'emit [inProgress, failed] when event loginStarted failure',
       build: () {
-        when(() => mockAppUser.login(any())).thenAnswer((_) => Future.value(Left(loginError)));
+        when(() => mockAppUser.login(any()))
+            .thenAnswer((_) => Future.value(const Left(LoginError.invalidCredentials())));
         mockAppUser.isLoggedIn = false;
         return AuthBloc(mockAppUser);
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password'))),
       expect: () => [
         const AuthState.inProgress(),
-        AuthState.failed(loginError),
+        const AuthState.failed(LoginError.invalidCredentials()),
       ],
       verify: (_) {
         verify(() => mockAppUser.login(any())).called(1);

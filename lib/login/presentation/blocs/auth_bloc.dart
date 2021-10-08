@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
 import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -39,7 +40,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (error) => emit(AuthState.failed(error)),
       (loggedIn) {
         if (!loggedIn) {
-          emit(AuthState.failed(StateError('Authorization Error')));
+          emit(const AuthState.failed(LoginError.invalidCredentials()));
         }
       },
     );

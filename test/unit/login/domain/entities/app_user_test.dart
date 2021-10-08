@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
 import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
@@ -23,7 +24,6 @@ void main() {
   tearDown(() {
     appUser?.dispose();
   });
-
 
   group('AppUser test', () {
     test('login test successful', () async {
@@ -55,15 +55,15 @@ void main() {
     });
 
     test('login test failure', () async {
-      final error = StateError('Login Failure');
-      when(() => mockAuthRepository.login(any())).thenAnswer((_) => Future.value(Left(error)));
+      when(() => mockAuthRepository.login(any()))
+          .thenAnswer((_) => Future.value(const Left(LoginError.invalidCredentials())));
       final initialLoggedIn = await appUser!.loggedIn.first;
       expect(initialLoggedIn, false);
       final result = await appUser!.login(credentials);
       expect(result, isA<EitherBool>());
       expect(result.isLeft(), true);
       result.leftMap((l) {
-        expect(l, error);
+        expect(l, const LoginError.invalidCredentials());
       });
       expect(appUser!.credentials, const EmptyCredentials());
       final loggedIn = await appUser!.loggedIn.first;

@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_junior_surf/login/data/providers/auth_provider.dart';
 import 'package:flutter_junior_surf/login/data/repositories/auth_repository_imp.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
@@ -14,7 +13,7 @@ void main() {
 
   group('AuthRepository ', () {
     test('login success test', () async {
-      when(() => mockAuthProvider.login(any(), any())).thenAnswer((_) => Future.value(const Right(true)));
+      when(() => mockAuthProvider.login(any(), any())).thenAnswer((_) => Future.value(true));
 
       final result = await authRepository.login(const Credentials(email: 'email', password: 'password'));
       expect(result, isA<EitherBool>());
@@ -25,7 +24,7 @@ void main() {
 
     test('login failure test', () async {
       final error = StateError('Login Error');
-      when(() => mockAuthProvider.login(any(), any())).thenAnswer((_) => Future.value(Left(error)));
+      when(() => mockAuthProvider.login(any(), any())).thenThrow(error);
 
       final result = await authRepository.login(const Credentials(email: 'email', password: 'password'));
       expect(result, isA<EitherBool>());
