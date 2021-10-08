@@ -4,3 +4,14 @@ class Credentials {
   final String email;
   final String password;
 }
+
+class EmptyCredentials implements Credentials {
+  const EmptyCredentials();
+
+  @override
+  String get email => '';
+
+  @override
+  String get password => '';
+
+}
