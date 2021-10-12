@@ -27,5 +27,9 @@
   "authorisationError": "Ошибка авторизации",
   "@authorisationError": {
     "description": "Authorisation Error"
+  },
+  "usersPageTitle": "Пользователи",
+  "@usersPageTitle": {
+    "description": "Users Page Title"
   }
 }
