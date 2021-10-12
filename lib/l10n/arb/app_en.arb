@@ -31,5 +31,9 @@
   "usersPageTitle": "Users",
   "@usersPageTitle": {
     "description": "Users Page Title"
+  },
+  "logoutButtonTooltip": "Quit the application",
+  "@logoutButtonTooltip": {
+    "description": "Logout Button Tooltip"
   }
 }

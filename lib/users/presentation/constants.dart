@@ -1,0 +1,1 @@
+const kUserIcon = 'assets/bx_user_circle.png';

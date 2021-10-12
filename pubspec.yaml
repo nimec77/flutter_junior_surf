@@ -38,4 +38,5 @@ flutter:
 
   assets:
     - background.png
+    - bx_user_circle.png
 

@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_junior_surf/app/constants.dart';
-import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
-import 'package:sizer/sizer.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
-
+import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
+import 'package:flutter_junior_surf/users/presentation/pages/user_helper.dart';
+import 'package:flutter_junior_surf/users/presentation/widgets/user_title.dart';
+import 'package:sizer/sizer.dart';
 
 class UsersPage extends StatefulWidget {
   const UsersPage({Key? key, required this.authBloc}) : super(key: key);
@@ -20,6 +21,8 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
+  final users = UserHelper(seed: 42).fakeUsersPod(20).map((e) => e.toUser());
+
   final _scrollController = ScrollController();
   late final double _basePadding;
   late final double _expandedHeight;
@@ -68,6 +71,14 @@ class _UsersPageState extends State<UsersPage> {
         controller: _scrollController,
         slivers: [
           SliverAppBar(
+            actions: [
+              IconButton(
+                onPressed: () => widget.authBloc.add(const AuthEvent.logout()),
+                icon: const Icon(Icons.exit_to_app),
+                color: Colors.black,
+                tooltip: l10n.logoutButtonTooltip,
+              ),
+            ],
             backgroundColor: Colors.white,
             pinned: true,
             expandedHeight: _expandedHeight,
@@ -83,15 +94,9 @@ class _UsersPageState extends State<UsersPage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return Container(
-                  color: index.isOdd ? Colors.white : Colors.black12,
-                  height: 100,
-                  child: Center(
-                    child: Text('$index', textScaleFactor: 5),
-                  ),
-                );
+                return UserTitle(user: users.elementAt(index));
               },
-              childCount: 20,
+              childCount: users.length,
             ),
           ),
         ],
