@@ -66,7 +66,7 @@ class _UsersPageState extends State<UsersPage> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      // backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [

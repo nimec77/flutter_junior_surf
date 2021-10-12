@@ -11,7 +11,7 @@ class UserTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2.h),
+      padding: EdgeInsets.symmetric(vertical: 1.8.h),
       child: Row(
         children: [
           Padding(
