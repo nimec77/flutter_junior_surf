@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/users/presentation/blocs/users_bloc.dart';
 import 'package:flutter_junior_surf/users/presentation/common_widgets/refresh_button.dart';
 import 'package:flutter_junior_surf/users/presentation/constants.dart';
@@ -11,6 +12,7 @@ class UsersFailure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       body: Center(
         child: Column(
@@ -18,7 +20,7 @@ class UsersFailure extends StatelessWidget {
           children: [
             Image.asset(kWarringIcon),
             SizedBox(height: 3.2.h),
-            Text('Не удалось загрузить информацию', style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
+            Text(l10n.usersFailureError, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
             SizedBox(height: 3.2.h),
             RefreshButton(onPressed: () => usersBloc.add(const UsersEvent.started())),
           ],

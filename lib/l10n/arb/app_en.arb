@@ -35,5 +35,9 @@
   "logoutButtonTooltip": "Quit the application",
   "@logoutButtonTooltip": {
     "description": "Logout Button Tooltip"
+  },
+  "usersFailureError": "Failed to load information",
+  "@usersFailureError": {
+    "description": "Error text when users cannot load"
   }
 }

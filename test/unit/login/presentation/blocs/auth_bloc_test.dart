@@ -44,7 +44,7 @@ void main() {
 
   group('AuthBloc test', () {
     test('Initial state is notAuthorized', () {
-      expect(AuthBloc(mockAppUser).state, equals(const AuthState.notAuthorized()));
+      expect(AuthBloc(mockAppUser).state, const AuthState.notAuthorized());
     });
 
     blocTest<AuthBloc, AuthState>(
@@ -61,9 +61,7 @@ void main() {
         const AuthState.inProgress(),
         const AuthState.success(),
       ],
-      verify: (_) {
-        verify(() => mockAppUser.login(any())).called(1);
-      },
+      verify: (_) => verify(() => mockAppUser.login(any())).called(1),
     );
 
     blocTest<AuthBloc, AuthState>(
@@ -80,9 +78,7 @@ void main() {
         const AuthState.inProgress(),
         isA<AuthStateFailed>(),
       ],
-      verify: (_) {
-        verify(() => mockAppUser.login(any())).called(1);
-      },
+      verify: (_) => verify(() => mockAppUser.login(any())).called(1),
     );
 
     blocTest<AuthBloc, AuthState>(
@@ -98,9 +94,7 @@ void main() {
         const AuthState.inProgress(),
         const AuthState.failed(LoginError.invalidCredentials()),
       ],
-      verify: (_) {
-        verify(() => mockAppUser.login(any())).called(1);
-      },
+      verify: (_) => verify(() => mockAppUser.login(any())).called(1),
     );
 
     blocTest<AuthBloc, AuthState>(
@@ -117,9 +111,7 @@ void main() {
         const AuthState.inProgress(),
         const AuthState.notAuthorized(),
       ],
-      verify: (_) {
-        verify(mockAppUser.logout).called(1);
-      },
+      verify: (_) => verify(mockAppUser.logout).called(1),
     );
   });
 }
