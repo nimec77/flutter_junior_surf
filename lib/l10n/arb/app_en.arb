@@ -39,5 +39,9 @@
   "usersFailureError": "Failed to load information",
   "@usersFailureError": {
     "description": "Error text when users cannot load"
+  },
+  "refreshButtonText": "Refresh",
+  "@refreshButtonText": {
+    "description": "Refresh button text"
   }
 }

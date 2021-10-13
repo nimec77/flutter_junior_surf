@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class RefreshButton extends StatelessWidget {
-  const RefreshButton({Key? key, this.onPressed}) : super(key: key);
+  const RefreshButton({Key? key, required this.text, this.onPressed}) : super(key: key);
 
+  final String text;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
+
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
@@ -21,7 +23,7 @@ class RefreshButton extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Обновить',
+        text,
         style: TextStyle(fontSize: 12.sp),
       ),
     );

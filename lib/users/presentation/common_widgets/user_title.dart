@@ -23,10 +23,12 @@ class UserTitle extends StatelessWidget {
             children: [
               Text(
                 user.username,
+                key: Key('${user.id}${user.username}'),
                 style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
               ),
               Text(
                 user.email,
+                key: Key('${user.id}${user.email}'),
                 style: TextStyle(
                   fontSize: 11.sp,
                   color: Colors.grey,
@@ -34,6 +36,7 @@ class UserTitle extends StatelessWidget {
               ),
               Text(
                 user.companyName,
+                key: Key('${user.id}${user.companyName}'),
                 style: TextStyle(
                   fontSize: 11.sp,
                 ),

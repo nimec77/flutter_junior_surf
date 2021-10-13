@@ -20,9 +20,16 @@ class UsersFailure extends StatelessWidget {
           children: [
             Image.asset(kWarringIcon),
             SizedBox(height: 3.2.h),
-            Text(l10n.usersFailureError, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
+            Text(
+              l10n.usersFailureError,
+              key: kUsersFailureErrorKey,
+              style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+            ),
             SizedBox(height: 3.2.h),
-            RefreshButton(onPressed: () => usersBloc.add(const UsersEvent.started())),
+            RefreshButton(
+              onPressed: () => usersBloc.add(const UsersEvent.started()),
+              text: l10n.refreshButtonText,
+            ),
           ],
         ),
       ),

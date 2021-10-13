@@ -18,10 +18,12 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String username,
+      {required int id,
+      required String username,
       required String email,
       required String companyName}) {
     return _User(
+      id: id,
       username: username,
       email: email,
       companyName: companyName,
@@ -34,6 +36,7 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
+  int get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get companyName => throw _privateConstructorUsedError;
@@ -46,7 +49,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String username, String email, String companyName});
+  $Res call({int id, String username, String email, String companyName});
 }
 
 /// @nodoc
@@ -59,11 +62,16 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? username = freezed,
     Object? email = freezed,
     Object? companyName = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -85,7 +93,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({String username, String email, String companyName});
+  $Res call({int id, String username, String email, String companyName});
 }
 
 /// @nodoc
@@ -99,11 +107,16 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? username = freezed,
     Object? email = freezed,
     Object? companyName = freezed,
   }) {
     return _then(_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -124,8 +137,13 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 class _$_User implements _User {
   const _$_User(
-      {required this.username, required this.email, required this.companyName});
+      {required this.id,
+      required this.username,
+      required this.email,
+      required this.companyName});
 
+  @override
+  final int id;
   @override
   final String username;
   @override
@@ -135,7 +153,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(username: $username, email: $email, companyName: $companyName)';
+    return 'User(id: $id, username: $username, email: $email, companyName: $companyName)';
   }
 
   @override
@@ -143,6 +161,7 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _User &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
@@ -151,7 +170,8 @@ class _$_User implements _User {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, username, email, companyName);
+  int get hashCode =>
+      Object.hash(runtimeType, id, username, email, companyName);
 
   @JsonKey(ignore: true)
   @override
@@ -161,10 +181,13 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required String username,
+      {required int id,
+      required String username,
       required String email,
       required String companyName}) = _$_User;
 
+  @override
+  int get id;
   @override
   String get username;
   @override

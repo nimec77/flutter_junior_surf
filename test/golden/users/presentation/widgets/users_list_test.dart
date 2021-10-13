@@ -8,7 +8,7 @@ import '../../../../helpers/helpers.dart';
 class MockAuthBloc extends Mock implements AuthBloc {}
 
 void main() {
-  final mockAuthBloc = AuthBloc(MockAppUser());
+  final mockAuthBloc = MockAuthBloc();
   final users = UserHelper(seed: 42).fakeUsersPod(10).map((e) => e.toUser());
 
   testGoldens('UsersList render test', (tester) async {

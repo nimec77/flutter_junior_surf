@@ -24,6 +24,7 @@ class UserPod with _$UserPod {
   factory UserPod.fromJson(Map<String, dynamic> json) => _$UserPodFromJson(json);
 
   User toUser() => User(
+        id: id,
         username: username,
         email: email,
         companyName: company.name,

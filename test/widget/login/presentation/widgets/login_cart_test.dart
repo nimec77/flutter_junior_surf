@@ -8,8 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../helpers/helpers.dart';
 
 void main() {
-  group('LoginCart test', () {
-    testWidgets('LoginCart render test', (tester) async {
+  group('LoginCart widget test', () {
+    testWidgets('Render test', (tester) async {
       late final AppLocalizations l10n;
       final widget = Builder(builder: (context) {
         l10n = context.l10n;
