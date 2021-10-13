@@ -1,25 +1,31 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_junior_surf/users/domain/entities/user.dart';
+import 'package:flutter_junior_surf/users/domain/ports/users_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
+part 'users_bloc.freezed.dart';
 part 'users_event.dart';
-
 part 'users_state.dart';
 
-part 'users_bloc.freezed.dart';
-
-typedef EitherUsers = Either<Exception, Iterable<User>>;
 
 class UsersBloc extends Bloc<UsersEvent, UsersState> {
-  UsersBloc() : super(const UsersState.inProgress()) {
+  UsersBloc(this.usersRepository) : super(const UsersState.inProgress()) {
     on<UsersEventStarted>(_mapStartedToState);
   }
 
+  final UsersRepository usersRepository;
+
   Future<void> _mapStartedToState(UsersEventStarted event, Emitter<UsersState> emit) async {
-    emit(UsersState.failure(Exception()));
+    emit(const UsersState.inProgress());
+    final usersEither = await usersRepository.fetchUsers();
+    emit(
+      usersEither.fold(
+        (exception) => UsersState.failure(exception),
+        (users) => UsersState.success(users),
+      ),
+    );
   }
 }

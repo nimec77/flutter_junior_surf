@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
+import 'package:flutter_junior_surf/users/data/providers/http_users_provider.dart';
+import 'package:flutter_junior_surf/users/data/respositories/users_repository_imp.dart';
 import 'package:flutter_junior_surf/users/presentation/blocs/users_bloc.dart';
 import 'package:flutter_junior_surf/users/presentation/widgets/users_failure.dart';
 import 'package:flutter_junior_surf/users/presentation/widgets/users_in_progress.dart';
@@ -16,8 +18,7 @@ class UsersPage extends StatefulWidget {
 }
 
 class _UsersPageState extends State<UsersPage> {
-  final _usersBloc = UsersBloc();
-  UsersState _state = const UsersState.inProgress();
+  final _usersBloc = UsersBloc(UsersRepositoryImp(HttpUsersProvider()));
 
   @override
   void initState() {
@@ -38,11 +39,10 @@ class _UsersPageState extends State<UsersPage> {
       child: BlocBuilder<UsersBloc, UsersState>(
         bloc: _usersBloc,
         builder: (context, state) {
-          _state = state;
-          return state.map(
-            inProgress: (_) => const UsersInProgress(),
-            success: (users) => UsersList(authBloc: widget.authBloc),
-            failure: (_) => const UsersFailure(),
+          return state.when(
+            inProgress: () => const UsersInProgress(),
+            success: (users) => UsersList(authBloc: widget.authBloc, users: users),
+            failure: (_) => UsersFailure(usersBloc: _usersBloc),
           );
         },
       ),

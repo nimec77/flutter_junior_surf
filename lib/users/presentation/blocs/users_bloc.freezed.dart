@@ -184,7 +184,7 @@ class _$UsersStateTearOff {
     return const UsersStateInProgress();
   }
 
-  UsersStateSuccess success(Either<Exception, Iterable<User>> users) {
+  UsersStateSuccess success(Iterable<User> users) {
     return UsersStateSuccess(
       users,
     );
@@ -205,21 +205,21 @@ mixin _$UsersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(Either<Exception, Iterable<User>> users) success,
+    required TResult Function(Iterable<User> users) success,
     required TResult Function(Exception exception) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
     required TResult orElse(),
   }) =>
@@ -306,7 +306,7 @@ class _$UsersStateInProgress implements UsersStateInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(Either<Exception, Iterable<User>> users) success,
+    required TResult Function(Iterable<User> users) success,
     required TResult Function(Exception exception) failure,
   }) {
     return inProgress();
@@ -316,7 +316,7 @@ class _$UsersStateInProgress implements UsersStateInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
   }) {
     return inProgress?.call();
@@ -326,7 +326,7 @@ class _$UsersStateInProgress implements UsersStateInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
     required TResult orElse(),
   }) {
@@ -380,7 +380,7 @@ abstract class $UsersStateSuccessCopyWith<$Res> {
   factory $UsersStateSuccessCopyWith(
           UsersStateSuccess value, $Res Function(UsersStateSuccess) then) =
       _$UsersStateSuccessCopyWithImpl<$Res>;
-  $Res call({Either<Exception, Iterable<User>> users});
+  $Res call({Iterable<User> users});
 }
 
 /// @nodoc
@@ -402,7 +402,7 @@ class _$UsersStateSuccessCopyWithImpl<$Res>
       users == freezed
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
-              as Either<Exception, Iterable<User>>,
+              as Iterable<User>,
     ));
   }
 }
@@ -413,7 +413,7 @@ class _$UsersStateSuccess implements UsersStateSuccess {
   const _$UsersStateSuccess(this.users);
 
   @override
-  final Either<Exception, Iterable<User>> users;
+  final Iterable<User> users;
 
   @override
   String toString() {
@@ -425,11 +425,12 @@ class _$UsersStateSuccess implements UsersStateSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UsersStateSuccess &&
-            (identical(other.users, users) || other.users == users));
+            const DeepCollectionEquality().equals(other.users, users));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, users);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(users));
 
   @JsonKey(ignore: true)
   @override
@@ -440,7 +441,7 @@ class _$UsersStateSuccess implements UsersStateSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(Either<Exception, Iterable<User>> users) success,
+    required TResult Function(Iterable<User> users) success,
     required TResult Function(Exception exception) failure,
   }) {
     return success(users);
@@ -450,7 +451,7 @@ class _$UsersStateSuccess implements UsersStateSuccess {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
   }) {
     return success?.call(users);
@@ -460,7 +461,7 @@ class _$UsersStateSuccess implements UsersStateSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
     required TResult orElse(),
   }) {
@@ -506,10 +507,9 @@ class _$UsersStateSuccess implements UsersStateSuccess {
 }
 
 abstract class UsersStateSuccess implements UsersState {
-  const factory UsersStateSuccess(Either<Exception, Iterable<User>> users) =
-      _$UsersStateSuccess;
+  const factory UsersStateSuccess(Iterable<User> users) = _$UsersStateSuccess;
 
-  Either<Exception, Iterable<User>> get users;
+  Iterable<User> get users;
   @JsonKey(ignore: true)
   $UsersStateSuccessCopyWith<UsersStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -581,7 +581,7 @@ class _$UsersStateFailure implements UsersStateFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inProgress,
-    required TResult Function(Either<Exception, Iterable<User>> users) success,
+    required TResult Function(Iterable<User> users) success,
     required TResult Function(Exception exception) failure,
   }) {
     return failure(exception);
@@ -591,7 +591,7 @@ class _$UsersStateFailure implements UsersStateFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
   }) {
     return failure?.call(exception);
@@ -601,7 +601,7 @@ class _$UsersStateFailure implements UsersStateFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
-    TResult Function(Either<Exception, Iterable<User>> users)? success,
+    TResult Function(Iterable<User> users)? success,
     TResult Function(Exception exception)? failure,
     required TResult orElse(),
   }) {

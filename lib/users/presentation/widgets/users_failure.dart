@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_junior_surf/users/presentation/blocs/users_bloc.dart';
 import 'package:flutter_junior_surf/users/presentation/common_widgets/refresh_button.dart';
 import 'package:flutter_junior_surf/users/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class UsersFailure extends StatelessWidget {
-  const UsersFailure({Key? key}) : super(key: key);
+  const UsersFailure({Key? key, required this.usersBloc}) : super(key: key);
+
+  final UsersBloc usersBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class UsersFailure extends StatelessWidget {
             SizedBox(height: 3.2.h),
             Text('Не удалось загрузить информацию', style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
             SizedBox(height: 3.2.h),
-            const RefreshButton(),
+            RefreshButton(onPressed: () => usersBloc.add(const UsersEvent.started())),
           ],
         ),
       ),

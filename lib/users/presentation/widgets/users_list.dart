@@ -7,22 +7,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_junior_surf/app/constants.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
-import 'package:flutter_junior_surf/users/presentation/pages/user_helper.dart';
+import 'package:flutter_junior_surf/users/domain/entities/user.dart';
 import 'package:flutter_junior_surf/users/presentation/widgets/user_title.dart';
 import 'package:sizer/sizer.dart';
 
 class UsersList extends StatefulWidget {
-  const UsersList({Key? key, required this.authBloc}) : super(key: key);
+  const UsersList({Key? key, required this.authBloc, required this.users}) : super(key: key);
 
   final AuthBloc authBloc;
+  final Iterable<User> users;
 
   @override
   State<UsersList> createState() => _UsersListState();
 }
 
 class _UsersListState extends State<UsersList> {
-  final users = UserHelper(seed: 42).fakeUsersPod(20).map((e) => e.toUser());
-
   final _scrollController = ScrollController();
   late final double _basePadding;
   late final double _expandedHeight;
@@ -93,9 +92,9 @@ class _UsersListState extends State<UsersList> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return UserTitle(user: users.elementAt(index));
+                return UserTitle(user: widget.users.elementAt(index));
               },
-              childCount: users.length,
+              childCount: widget.users.length,
             ),
           ),
         ],
