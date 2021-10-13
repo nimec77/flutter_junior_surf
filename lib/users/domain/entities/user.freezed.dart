@@ -141,23 +141,17 @@ class _$_User implements _User {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
+        (other.runtimeType == runtimeType &&
+            other is _User &&
             (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
+                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.companyName, companyName) ||
-                const DeepCollectionEquality()
-                    .equals(other.companyName, companyName)));
+                other.companyName == companyName));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(companyName);
+  int get hashCode => Object.hash(runtimeType, username, email, companyName);
 
   @JsonKey(ignore: true)
   @override
@@ -172,11 +166,11 @@ abstract class _User implements User {
       required String companyName}) = _$_User;
 
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get companyName => throw _privateConstructorUsedError;
+  String get companyName;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

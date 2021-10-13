@@ -112,7 +112,9 @@ class _$LoginErrorInvalidCredentials implements LoginErrorInvalidCredentials {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoginErrorInvalidCredentials);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LoginErrorInvalidCredentials);
   }
 
   @override

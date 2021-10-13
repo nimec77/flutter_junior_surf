@@ -119,7 +119,8 @@ class _$AppRouteEventToLogin implements AppRouteEventToLogin {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AppRouteEventToLogin);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AppRouteEventToLogin);
   }
 
   @override
@@ -223,7 +224,8 @@ class _$AppRouteEventToUsers implements AppRouteEventToUsers {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AppRouteEventToUsers);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AppRouteEventToUsers);
   }
 
   @override
@@ -402,7 +404,8 @@ class _$AppRouteStateLogin implements AppRouteStateLogin {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AppRouteStateLogin);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AppRouteStateLogin);
   }
 
   @override
@@ -506,7 +509,8 @@ class _$AppRouteStateUsers implements AppRouteStateUsers {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AppRouteStateUsers);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AppRouteStateUsers);
   }
 
   @override

@@ -22,12 +22,14 @@ class LoginButton extends StatelessWidget {
           ),
         ),
         foregroundColor: MaterialStateProperty.resolveWith<Color>((states) => Colors.white),
-        backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.disabled)) {
-            return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-          }
-          return Theme.of(context).colorScheme.primary;
-        }),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (states) {
+            if (states.contains(MaterialState.disabled)) {
+              return Theme.of(context).colorScheme.primary.withOpacity(0.5);
+            }
+            return Theme.of(context).colorScheme.primary;
+          },
+        ),
       ),
       child: child,
     );

@@ -156,15 +156,14 @@ class _$AuthEventLoginStated implements AuthEventLoginStated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthEventLoginStated &&
+        (other.runtimeType == runtimeType &&
+            other is AuthEventLoginStated &&
             (identical(other.credentials, credentials) ||
-                const DeepCollectionEquality()
-                    .equals(other.credentials, credentials)));
+                other.credentials == credentials));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(credentials);
+  int get hashCode => Object.hash(runtimeType, credentials);
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +250,7 @@ abstract class AuthEventLoginStated implements AuthEvent {
   const factory AuthEventLoginStated(Credentials credentials) =
       _$AuthEventLoginStated;
 
-  Credentials get credentials => throw _privateConstructorUsedError;
+  Credentials get credentials;
   @JsonKey(ignore: true)
   $AuthEventLoginStatedCopyWith<AuthEventLoginStated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -288,7 +287,8 @@ class _$AuthEventLoggedIn implements AuthEventLoggedIn {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthEventLoggedIn);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthEventLoggedIn);
   }
 
   @override
@@ -403,7 +403,8 @@ class _$AuthEventLogout implements AuthEventLogout {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthEventLogout);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthEventLogout);
   }
 
   @override
@@ -519,7 +520,8 @@ class _$AuthEventLoggedOut implements AuthEventLoggedOut {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthEventLoggedOut);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthEventLoggedOut);
   }
 
   @override
@@ -730,7 +732,8 @@ class _$AuthStateNotAuthorized implements AuthStateNotAuthorized {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthStateNotAuthorized);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthStateNotAuthorized);
   }
 
   @override
@@ -846,7 +849,8 @@ class _$AuthStateInProgress implements AuthStateInProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthStateInProgress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthStateInProgress);
   }
 
   @override
@@ -961,7 +965,8 @@ class _$AuthStateSuccess implements AuthStateSuccess {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthStateSuccess);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AuthStateSuccess);
   }
 
   @override
@@ -1102,14 +1107,13 @@ class _$AuthStateFailed implements AuthStateFailed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthStateFailed &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is AuthStateFailed &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
@@ -1194,7 +1198,7 @@ class _$AuthStateFailed implements AuthStateFailed {
 abstract class AuthStateFailed implements AuthState {
   const factory AuthStateFailed(LoginError error) = _$AuthStateFailed;
 
-  LoginError get error => throw _privateConstructorUsedError;
+  LoginError get error;
   @JsonKey(ignore: true)
   $AuthStateFailedCopyWith<AuthStateFailed> get copyWith =>
       throw _privateConstructorUsedError;

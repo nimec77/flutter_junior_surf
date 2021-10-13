@@ -30,7 +30,7 @@ class _$CompanyTearOff {
     );
   }
 
-  Company fromJson(Map<String, Object> json) {
+  Company fromJson(Map<String, Object?> json) {
     return Company.fromJson(json);
   }
 }
@@ -152,22 +152,16 @@ class _$CompanyPod implements CompanyPod {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CompanyPod &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+        (other.runtimeType == runtimeType &&
+            other is CompanyPod &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.catchPhrase, catchPhrase) ||
-                const DeepCollectionEquality()
-                    .equals(other.catchPhrase, catchPhrase)) &&
-            (identical(other.bs, bs) ||
-                const DeepCollectionEquality().equals(other.bs, bs)));
+                other.catchPhrase == catchPhrase) &&
+            (identical(other.bs, bs) || other.bs == bs));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(catchPhrase) ^
-      const DeepCollectionEquality().hash(bs);
+  int get hashCode => Object.hash(runtimeType, name, catchPhrase, bs);
 
   @JsonKey(ignore: true)
   @override
@@ -190,11 +184,11 @@ abstract class CompanyPod implements Company {
       _$CompanyPod.fromJson;
 
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get catchPhrase => throw _privateConstructorUsedError;
+  String get catchPhrase;
   @override
-  String get bs => throw _privateConstructorUsedError;
+  String get bs;
   @override
   @JsonKey(ignore: true)
   $CompanyPodCopyWith<CompanyPod> get copyWith =>

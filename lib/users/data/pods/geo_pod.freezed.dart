@@ -28,7 +28,7 @@ class _$GeoTearOff {
     );
   }
 
-  Geo fromJson(Map<String, Object> json) {
+  Geo fromJson(Map<String, Object?> json) {
     return Geo.fromJson(json);
   }
 }
@@ -135,18 +135,14 @@ class _$GeoPod implements GeoPod {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GeoPod &&
-            (identical(other.lat, lat) ||
-                const DeepCollectionEquality().equals(other.lat, lat)) &&
-            (identical(other.lng, lng) ||
-                const DeepCollectionEquality().equals(other.lng, lng)));
+        (other.runtimeType == runtimeType &&
+            other is GeoPod &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(lat) ^
-      const DeepCollectionEquality().hash(lng);
+  int get hashCode => Object.hash(runtimeType, lat, lng);
 
   @JsonKey(ignore: true)
   @override
@@ -165,9 +161,9 @@ abstract class GeoPod implements Geo {
   factory GeoPod.fromJson(Map<String, dynamic> json) = _$GeoPod.fromJson;
 
   @override
-  String get lat => throw _privateConstructorUsedError;
+  String get lat;
   @override
-  String get lng => throw _privateConstructorUsedError;
+  String get lng;
   @override
   @JsonKey(ignore: true)
   $GeoPodCopyWith<GeoPod> get copyWith => throw _privateConstructorUsedError;

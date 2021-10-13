@@ -36,7 +36,7 @@ class _$AddressTearOff {
     );
   }
 
-  Address fromJson(Map<String, Object> json) {
+  Address fromJson(Map<String, Object?> json) {
     return Address.fromJson(json);
   }
 }
@@ -201,28 +201,18 @@ class _$AddresPod implements AddresPod {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AddresPod &&
-            (identical(other.street, street) ||
-                const DeepCollectionEquality().equals(other.street, street)) &&
-            (identical(other.suite, suite) ||
-                const DeepCollectionEquality().equals(other.suite, suite)) &&
-            (identical(other.city, city) ||
-                const DeepCollectionEquality().equals(other.city, city)) &&
-            (identical(other.zipcode, zipcode) ||
-                const DeepCollectionEquality()
-                    .equals(other.zipcode, zipcode)) &&
-            (identical(other.geo, geo) ||
-                const DeepCollectionEquality().equals(other.geo, geo)));
+        (other.runtimeType == runtimeType &&
+            other is AddresPod &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.suite, suite) || other.suite == suite) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.zipcode, zipcode) || other.zipcode == zipcode) &&
+            (identical(other.geo, geo) || other.geo == geo));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(street) ^
-      const DeepCollectionEquality().hash(suite) ^
-      const DeepCollectionEquality().hash(city) ^
-      const DeepCollectionEquality().hash(zipcode) ^
-      const DeepCollectionEquality().hash(geo);
+      Object.hash(runtimeType, street, suite, city, zipcode, geo);
 
   @JsonKey(ignore: true)
   @override
@@ -246,15 +236,15 @@ abstract class AddresPod implements Address {
   factory AddresPod.fromJson(Map<String, dynamic> json) = _$AddresPod.fromJson;
 
   @override
-  String get street => throw _privateConstructorUsedError;
+  String get street;
   @override
-  String get suite => throw _privateConstructorUsedError;
+  String get suite;
   @override
-  String get city => throw _privateConstructorUsedError;
+  String get city;
   @override
-  String get zipcode => throw _privateConstructorUsedError;
+  String get zipcode;
   @override
-  Geo get geo => throw _privateConstructorUsedError;
+  Geo get geo;
   @override
   @JsonKey(ignore: true)
   $AddresPodCopyWith<AddresPod> get copyWith =>

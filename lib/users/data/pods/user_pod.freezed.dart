@@ -40,7 +40,7 @@ class _$UserPodTearOff {
     );
   }
 
-  UserPod fromJson(Map<String, Object> json) {
+  UserPod fromJson(Map<String, Object?> json) {
     return UserPod.fromJson(json);
   }
 }
@@ -258,36 +258,21 @@ class _$UserPodDefault extends UserPodDefault {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UserPodDefault &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is UserPodDefault &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.website, website) ||
-                const DeepCollectionEquality()
-                    .equals(other.website, website)) &&
-            (identical(other.company, company) ||
-                const DeepCollectionEquality().equals(other.company, company)));
+                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.website, website) || other.website == website) &&
+            (identical(other.company, company) || other.company == company));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(address) ^
-      const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(website) ^
-      const DeepCollectionEquality().hash(company);
+  int get hashCode => Object.hash(
+      runtimeType, id, username, email, address, phone, website, company);
 
   @JsonKey(ignore: true)
   @override
@@ -315,19 +300,19 @@ abstract class UserPodDefault extends UserPod {
       _$UserPodDefault.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  Address get address => throw _privateConstructorUsedError;
+  Address get address;
   @override
-  String get phone => throw _privateConstructorUsedError;
+  String get phone;
   @override
-  String get website => throw _privateConstructorUsedError;
+  String get website;
   @override
-  Company get company => throw _privateConstructorUsedError;
+  Company get company;
   @override
   @JsonKey(ignore: true)
   $UserPodDefaultCopyWith<UserPodDefault> get copyWith =>
