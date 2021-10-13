@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
-import 'package:flutter_junior_surf/login/login.dart';
+import 'package:flutter_junior_surf/login/presentation/common_widget/login_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../helpers/helpers.dart';

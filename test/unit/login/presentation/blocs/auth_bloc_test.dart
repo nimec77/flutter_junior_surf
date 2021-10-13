@@ -3,37 +3,12 @@ import 'dart:async';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
-import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAppUser extends Mock implements AppUser {
-  MockAppUser() {
-    _loggedIn = StreamController<bool>.broadcast(onListen: () {
-      _loggedIn.add(_isLoggedIn);
-    });
-  }
-
-  late final StreamController<bool> _loggedIn;
-  bool _isLoggedIn = false;
-
-  set isLoggedIn(bool value) {
-    _isLoggedIn = value;
-    _loggedIn.add(_isLoggedIn);
-  }
-
-  bool get isLoggedIn => _isLoggedIn;
-
-  @override
-  Stream<bool> get loggedIn => _loggedIn.stream;
-
-  @override
-  void dispose() {
-    _loggedIn.close();
-  }
-}
+import '../../../../helpers/mock_helpers.dart';
 
 void main() {
   final mockAppUser = MockAppUser();

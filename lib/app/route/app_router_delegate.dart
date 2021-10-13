@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_junior_surf/app/route/app_route_bloc.dart';
-import 'package:flutter_junior_surf/login/login.dart';
+import 'package:flutter_junior_surf/login/presentation/pages/login_page.dart';
 import 'package:flutter_junior_surf/users/presentation/pages/users_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<AppRouteState>

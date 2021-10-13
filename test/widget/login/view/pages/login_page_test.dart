@@ -1,7 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
-import 'package:flutter_junior_surf/login/login.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
+import 'package:flutter_junior_surf/login/presentation/common_widget/login_background.dart';
+import 'package:flutter_junior_surf/login/presentation/pages/login_page.dart';
+import 'package:flutter_junior_surf/login/presentation/widgets/login_cart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

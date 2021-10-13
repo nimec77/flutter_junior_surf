@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
-import 'package:flutter_junior_surf/login/login.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
+import 'package:flutter_junior_surf/login/presentation/common_widget/login_background.dart';
+import 'package:flutter_junior_surf/login/presentation/constants.dart';
+import 'package:flutter_junior_surf/login/presentation/widgets/login_cart.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:flutter_junior_surf/app/constants.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_junior_surf/users/domain/entities/user.dart';
-import 'package:flutter_junior_surf/users/presentation/widgets/user_title.dart';
+import 'package:flutter_junior_surf/users/presentation/common_widgets/user_title.dart';
 import 'package:sizer/sizer.dart';
 
 class UsersList extends StatefulWidget {
