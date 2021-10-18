@@ -8,10 +8,15 @@ class CredentialsRepositoryImp implements CredentialsRepository {
   CredentialsRepositoryImp(this.credentialsProvider);
 
   final CredentialsProvider credentialsProvider;
+  var _initialized = false;
 
   @override
-  EitherCredential loadCredentials() {
+  Future<EitherCredential> loadCredentials() async {
     try {
+      if (!_initialized) {
+        await credentialsProvider.init();
+        _initialized = true;
+      }
       final result = credentialsProvider.loadCredentials();
       return Right(result);
     } on TypeError catch(error) {
@@ -22,6 +27,10 @@ class CredentialsRepositoryImp implements CredentialsRepository {
   @override
   Future<EitherBool> saveCredentials(Credentials credentials) async {
     try {
+      if (!_initialized) {
+        await credentialsProvider.init();
+        _initialized = true;
+      }
        final result = await credentialsProvider.saveCredentials(credentials);
        return Right(result);
     } on ArgumentError catch(error) {

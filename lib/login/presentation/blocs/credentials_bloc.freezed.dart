@@ -20,12 +20,6 @@ class _$CredentialsEventTearOff {
   CredentialsEventLoaded loaded() {
     return const CredentialsEventLoaded();
   }
-
-  CredentialsEventSaved saved(Credentials credentials) {
-    return CredentialsEventSaved(
-      credentials,
-    );
-  }
 }
 
 /// @nodoc
@@ -36,38 +30,32 @@ mixin _$CredentialsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
-    required TResult Function(Credentials credentials) saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function(Credentials credentials)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function(Credentials credentials)? saved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CredentialsEventLoaded value) loaded,
-    required TResult Function(CredentialsEventSaved value) saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CredentialsEventLoaded value)? loaded,
-    TResult Function(CredentialsEventSaved value)? saved,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CredentialsEventLoaded value)? loaded,
-    TResult Function(CredentialsEventSaved value)? saved,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,7 +120,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
-    required TResult Function(Credentials credentials) saved,
   }) {
     return loaded();
   }
@@ -141,7 +128,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function(Credentials credentials)? saved,
   }) {
     return loaded?.call();
   }
@@ -150,7 +136,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function(Credentials credentials)? saved,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -163,7 +148,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CredentialsEventLoaded value) loaded,
-    required TResult Function(CredentialsEventSaved value) saved,
   }) {
     return loaded(this);
   }
@@ -172,7 +156,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CredentialsEventLoaded value)? loaded,
-    TResult Function(CredentialsEventSaved value)? saved,
   }) {
     return loaded?.call(this);
   }
@@ -181,7 +164,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CredentialsEventLoaded value)? loaded,
-    TResult Function(CredentialsEventSaved value)? saved,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -193,142 +175,6 @@ class _$CredentialsEventLoaded implements CredentialsEventLoaded {
 
 abstract class CredentialsEventLoaded implements CredentialsEvent {
   const factory CredentialsEventLoaded() = _$CredentialsEventLoaded;
-}
-
-/// @nodoc
-abstract class $CredentialsEventSavedCopyWith<$Res> {
-  factory $CredentialsEventSavedCopyWith(CredentialsEventSaved value,
-          $Res Function(CredentialsEventSaved) then) =
-      _$CredentialsEventSavedCopyWithImpl<$Res>;
-  $Res call({Credentials credentials});
-}
-
-/// @nodoc
-class _$CredentialsEventSavedCopyWithImpl<$Res>
-    extends _$CredentialsEventCopyWithImpl<$Res>
-    implements $CredentialsEventSavedCopyWith<$Res> {
-  _$CredentialsEventSavedCopyWithImpl(
-      CredentialsEventSaved _value, $Res Function(CredentialsEventSaved) _then)
-      : super(_value, (v) => _then(v as CredentialsEventSaved));
-
-  @override
-  CredentialsEventSaved get _value => super._value as CredentialsEventSaved;
-
-  @override
-  $Res call({
-    Object? credentials = freezed,
-  }) {
-    return _then(CredentialsEventSaved(
-      credentials == freezed
-          ? _value.credentials
-          : credentials // ignore: cast_nullable_to_non_nullable
-              as Credentials,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CredentialsEventSaved implements CredentialsEventSaved {
-  const _$CredentialsEventSaved(this.credentials);
-
-  @override
-  final Credentials credentials;
-
-  @override
-  String toString() {
-    return 'CredentialsEvent.saved(credentials: $credentials)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CredentialsEventSaved &&
-            (identical(other.credentials, credentials) ||
-                other.credentials == credentials));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, credentials);
-
-  @JsonKey(ignore: true)
-  @override
-  $CredentialsEventSavedCopyWith<CredentialsEventSaved> get copyWith =>
-      _$CredentialsEventSavedCopyWithImpl<CredentialsEventSaved>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
-    required TResult Function(Credentials credentials) saved,
-  }) {
-    return saved(credentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(Credentials credentials)? saved,
-  }) {
-    return saved?.call(credentials);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(Credentials credentials)? saved,
-    required TResult orElse(),
-  }) {
-    if (saved != null) {
-      return saved(credentials);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CredentialsEventLoaded value) loaded,
-    required TResult Function(CredentialsEventSaved value) saved,
-  }) {
-    return saved(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CredentialsEventLoaded value)? loaded,
-    TResult Function(CredentialsEventSaved value)? saved,
-  }) {
-    return saved?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CredentialsEventLoaded value)? loaded,
-    TResult Function(CredentialsEventSaved value)? saved,
-    required TResult orElse(),
-  }) {
-    if (saved != null) {
-      return saved(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CredentialsEventSaved implements CredentialsEvent {
-  const factory CredentialsEventSaved(Credentials credentials) =
-      _$CredentialsEventSaved;
-
-  Credentials get credentials;
-  @JsonKey(ignore: true)
-  $CredentialsEventSavedCopyWith<CredentialsEventSaved> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -346,20 +192,6 @@ class _$CredentialsStateTearOff {
       error,
     );
   }
-
-  CredentialsStateInProgress saveInProgress() {
-    return const CredentialsStateInProgress();
-  }
-
-  CredentialsStateSaveSuccess saveSuccess() {
-    return const CredentialsStateSaveSuccess();
-  }
-
-  CredentialsStateSaveFailure saveFailure(Error error) {
-    return CredentialsStateSaveFailure(
-      error,
-    );
-  }
 }
 
 /// @nodoc
@@ -371,27 +203,18 @@ mixin _$CredentialsState {
   TResult when<TResult extends Object?>({
     required TResult Function(Credentials credentials) loadSuccess,
     required TResult Function(Error error) loadFailure,
-    required TResult Function() saveInProgress,
-    required TResult Function() saveSuccess,
-    required TResult Function(Error error) saveFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -399,27 +222,18 @@ mixin _$CredentialsState {
   TResult map<TResult extends Object?>({
     required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
     required TResult Function(CredentialsStateLoadFailure value) loadFailure,
-    required TResult Function(CredentialsStateInProgress value) saveInProgress,
-    required TResult Function(CredentialsStateSaveSuccess value) saveSuccess,
-    required TResult Function(CredentialsStateSaveFailure value) saveFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -512,9 +326,6 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function(Credentials credentials) loadSuccess,
     required TResult Function(Error error) loadFailure,
-    required TResult Function() saveInProgress,
-    required TResult Function() saveSuccess,
-    required TResult Function(Error error) saveFailure,
   }) {
     return loadSuccess(credentials);
   }
@@ -524,9 +335,6 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
   }) {
     return loadSuccess?.call(credentials);
   }
@@ -536,9 +344,6 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -552,9 +357,6 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
     required TResult Function(CredentialsStateLoadFailure value) loadFailure,
-    required TResult Function(CredentialsStateInProgress value) saveInProgress,
-    required TResult Function(CredentialsStateSaveSuccess value) saveSuccess,
-    required TResult Function(CredentialsStateSaveFailure value) saveFailure,
   }) {
     return loadSuccess(this);
   }
@@ -564,9 +366,6 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
   }) {
     return loadSuccess?.call(this);
   }
@@ -576,9 +375,6 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -667,9 +463,6 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(Credentials credentials) loadSuccess,
     required TResult Function(Error error) loadFailure,
-    required TResult Function() saveInProgress,
-    required TResult Function() saveSuccess,
-    required TResult Function(Error error) saveFailure,
   }) {
     return loadFailure(error);
   }
@@ -679,9 +472,6 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
   }) {
     return loadFailure?.call(error);
   }
@@ -691,9 +481,6 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -707,9 +494,6 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
     required TResult Function(CredentialsStateLoadFailure value) loadFailure,
-    required TResult Function(CredentialsStateInProgress value) saveInProgress,
-    required TResult Function(CredentialsStateSaveSuccess value) saveSuccess,
-    required TResult Function(CredentialsStateSaveFailure value) saveFailure,
   }) {
     return loadFailure(this);
   }
@@ -719,9 +503,6 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
   }) {
     return loadFailure?.call(this);
   }
@@ -731,9 +512,6 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -750,411 +528,5 @@ abstract class CredentialsStateLoadFailure implements CredentialsState {
   Error get error;
   @JsonKey(ignore: true)
   $CredentialsStateLoadFailureCopyWith<CredentialsStateLoadFailure>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CredentialsStateInProgressCopyWith<$Res> {
-  factory $CredentialsStateInProgressCopyWith(CredentialsStateInProgress value,
-          $Res Function(CredentialsStateInProgress) then) =
-      _$CredentialsStateInProgressCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CredentialsStateInProgressCopyWithImpl<$Res>
-    extends _$CredentialsStateCopyWithImpl<$Res>
-    implements $CredentialsStateInProgressCopyWith<$Res> {
-  _$CredentialsStateInProgressCopyWithImpl(CredentialsStateInProgress _value,
-      $Res Function(CredentialsStateInProgress) _then)
-      : super(_value, (v) => _then(v as CredentialsStateInProgress));
-
-  @override
-  CredentialsStateInProgress get _value =>
-      super._value as CredentialsStateInProgress;
-}
-
-/// @nodoc
-
-class _$CredentialsStateInProgress implements CredentialsStateInProgress {
-  const _$CredentialsStateInProgress();
-
-  @override
-  String toString() {
-    return 'CredentialsState.saveInProgress()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CredentialsStateInProgress);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Credentials credentials) loadSuccess,
-    required TResult Function(Error error) loadFailure,
-    required TResult Function() saveInProgress,
-    required TResult Function() saveSuccess,
-    required TResult Function(Error error) saveFailure,
-  }) {
-    return saveInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Credentials credentials)? loadSuccess,
-    TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
-  }) {
-    return saveInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Credentials credentials)? loadSuccess,
-    TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
-    required TResult orElse(),
-  }) {
-    if (saveInProgress != null) {
-      return saveInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
-    required TResult Function(CredentialsStateLoadFailure value) loadFailure,
-    required TResult Function(CredentialsStateInProgress value) saveInProgress,
-    required TResult Function(CredentialsStateSaveSuccess value) saveSuccess,
-    required TResult Function(CredentialsStateSaveFailure value) saveFailure,
-  }) {
-    return saveInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
-    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
-  }) {
-    return saveInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
-    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
-    required TResult orElse(),
-  }) {
-    if (saveInProgress != null) {
-      return saveInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CredentialsStateInProgress implements CredentialsState {
-  const factory CredentialsStateInProgress() = _$CredentialsStateInProgress;
-}
-
-/// @nodoc
-abstract class $CredentialsStateSaveSuccessCopyWith<$Res> {
-  factory $CredentialsStateSaveSuccessCopyWith(
-          CredentialsStateSaveSuccess value,
-          $Res Function(CredentialsStateSaveSuccess) then) =
-      _$CredentialsStateSaveSuccessCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$CredentialsStateSaveSuccessCopyWithImpl<$Res>
-    extends _$CredentialsStateCopyWithImpl<$Res>
-    implements $CredentialsStateSaveSuccessCopyWith<$Res> {
-  _$CredentialsStateSaveSuccessCopyWithImpl(CredentialsStateSaveSuccess _value,
-      $Res Function(CredentialsStateSaveSuccess) _then)
-      : super(_value, (v) => _then(v as CredentialsStateSaveSuccess));
-
-  @override
-  CredentialsStateSaveSuccess get _value =>
-      super._value as CredentialsStateSaveSuccess;
-}
-
-/// @nodoc
-
-class _$CredentialsStateSaveSuccess implements CredentialsStateSaveSuccess {
-  const _$CredentialsStateSaveSuccess();
-
-  @override
-  String toString() {
-    return 'CredentialsState.saveSuccess()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CredentialsStateSaveSuccess);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Credentials credentials) loadSuccess,
-    required TResult Function(Error error) loadFailure,
-    required TResult Function() saveInProgress,
-    required TResult Function() saveSuccess,
-    required TResult Function(Error error) saveFailure,
-  }) {
-    return saveSuccess();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Credentials credentials)? loadSuccess,
-    TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
-  }) {
-    return saveSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Credentials credentials)? loadSuccess,
-    TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
-    required TResult orElse(),
-  }) {
-    if (saveSuccess != null) {
-      return saveSuccess();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
-    required TResult Function(CredentialsStateLoadFailure value) loadFailure,
-    required TResult Function(CredentialsStateInProgress value) saveInProgress,
-    required TResult Function(CredentialsStateSaveSuccess value) saveSuccess,
-    required TResult Function(CredentialsStateSaveFailure value) saveFailure,
-  }) {
-    return saveSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
-    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
-  }) {
-    return saveSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
-    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
-    required TResult orElse(),
-  }) {
-    if (saveSuccess != null) {
-      return saveSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CredentialsStateSaveSuccess implements CredentialsState {
-  const factory CredentialsStateSaveSuccess() = _$CredentialsStateSaveSuccess;
-}
-
-/// @nodoc
-abstract class $CredentialsStateSaveFailureCopyWith<$Res> {
-  factory $CredentialsStateSaveFailureCopyWith(
-          CredentialsStateSaveFailure value,
-          $Res Function(CredentialsStateSaveFailure) then) =
-      _$CredentialsStateSaveFailureCopyWithImpl<$Res>;
-  $Res call({Error error});
-}
-
-/// @nodoc
-class _$CredentialsStateSaveFailureCopyWithImpl<$Res>
-    extends _$CredentialsStateCopyWithImpl<$Res>
-    implements $CredentialsStateSaveFailureCopyWith<$Res> {
-  _$CredentialsStateSaveFailureCopyWithImpl(CredentialsStateSaveFailure _value,
-      $Res Function(CredentialsStateSaveFailure) _then)
-      : super(_value, (v) => _then(v as CredentialsStateSaveFailure));
-
-  @override
-  CredentialsStateSaveFailure get _value =>
-      super._value as CredentialsStateSaveFailure;
-
-  @override
-  $Res call({
-    Object? error = freezed,
-  }) {
-    return _then(CredentialsStateSaveFailure(
-      error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Error,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CredentialsStateSaveFailure implements CredentialsStateSaveFailure {
-  const _$CredentialsStateSaveFailure(this.error);
-
-  @override
-  final Error error;
-
-  @override
-  String toString() {
-    return 'CredentialsState.saveFailure(error: $error)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is CredentialsStateSaveFailure &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  $CredentialsStateSaveFailureCopyWith<CredentialsStateSaveFailure>
-      get copyWith => _$CredentialsStateSaveFailureCopyWithImpl<
-          CredentialsStateSaveFailure>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Credentials credentials) loadSuccess,
-    required TResult Function(Error error) loadFailure,
-    required TResult Function() saveInProgress,
-    required TResult Function() saveSuccess,
-    required TResult Function(Error error) saveFailure,
-  }) {
-    return saveFailure(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Credentials credentials)? loadSuccess,
-    TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
-  }) {
-    return saveFailure?.call(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Credentials credentials)? loadSuccess,
-    TResult Function(Error error)? loadFailure,
-    TResult Function()? saveInProgress,
-    TResult Function()? saveSuccess,
-    TResult Function(Error error)? saveFailure,
-    required TResult orElse(),
-  }) {
-    if (saveFailure != null) {
-      return saveFailure(error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
-    required TResult Function(CredentialsStateLoadFailure value) loadFailure,
-    required TResult Function(CredentialsStateInProgress value) saveInProgress,
-    required TResult Function(CredentialsStateSaveSuccess value) saveSuccess,
-    required TResult Function(CredentialsStateSaveFailure value) saveFailure,
-  }) {
-    return saveFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
-    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
-  }) {
-    return saveFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
-    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
-    TResult Function(CredentialsStateInProgress value)? saveInProgress,
-    TResult Function(CredentialsStateSaveSuccess value)? saveSuccess,
-    TResult Function(CredentialsStateSaveFailure value)? saveFailure,
-    required TResult orElse(),
-  }) {
-    if (saveFailure != null) {
-      return saveFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CredentialsStateSaveFailure implements CredentialsState {
-  const factory CredentialsStateSaveFailure(Error error) =
-      _$CredentialsStateSaveFailure;
-
-  Error get error;
-  @JsonKey(ignore: true)
-  $CredentialsStateSaveFailureCopyWith<CredentialsStateSaveFailure>
       get copyWith => throw _privateConstructorUsedError;
 }

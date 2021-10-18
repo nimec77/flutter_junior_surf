@@ -3,22 +3,25 @@ import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
 import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
+import 'package:flutter_junior_surf/login/domain/use_cases/credentials_save_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
+class MockCredentialsSaveUseCase extends Mock implements CredentialsSaveUseCase {}
 
 void main() {
   const credentials = Credentials(email: 'email', password: 'password');
   final mockAuthRepository = MockAuthRepository();
+  final mockCredentialsSaveUseCase = MockCredentialsSaveUseCase();
   AppUser? appUser;
 
   setUpAll(() {
-    registerFallbackValue<Credentials>(const Credentials(email: 'email', password: 'password'));
+    registerFallbackValue<Credentials>(const NullCredentials());
   });
 
   setUp(() {
-    appUser = AppUser(mockAuthRepository);
+    appUser = AppUser(authRepository: mockAuthRepository, credentialsSaveUseCase: mockCredentialsSaveUseCase);
   });
 
   tearDown(() {
@@ -27,6 +30,7 @@ void main() {
 
   group('AppUser test', () {
     test('login test successful', () async {
+      when(() => mockCredentialsSaveUseCase.save(any())).thenAnswer((_) => Future.value(const Right(true)));
       when(() => mockAuthRepository.login(any())).thenAnswer((_) => Future.value(const Right(true)));
       final initialLoggedIn = await appUser!.loggedIn.first;
       expect(initialLoggedIn, false);
@@ -37,6 +41,7 @@ void main() {
       expect(appUser!.credentials, credentials);
       final loggedIn = await appUser!.loggedIn.first;
       expect(loggedIn, true);
+      verify(() => mockCredentialsSaveUseCase.save(any())).called(1);
       verify(() => mockAuthRepository.login(any())).called(1);
     });
 

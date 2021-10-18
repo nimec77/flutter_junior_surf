@@ -19,31 +19,17 @@ class CredentialsBloc extends Bloc<CredentialsEvent, CredentialsState> {
     required this.credentialsSaveUseCase,
   }) : super(const CredentialsState.loadSuccess(NullCredentials())) {
     on<CredentialsEventLoaded>(_mapLoadedToState);
-    on<CredentialsEventSaved>(_mapSavedToState);
   }
 
   final CredentialsLoadUseCase credentialsLoadUseCase;
   final CredentialsSaveUseCase credentialsSaveUseCase;
 
   Future<void> _mapLoadedToState(CredentialsEventLoaded event, Emitter<CredentialsState> emit) async {
-    final resultEither = credentialsLoadUseCase.load();
+    final resultEither = await credentialsLoadUseCase.load();
     emit(
       resultEither.fold(
         (error) => CredentialsState.loadFailure(error),
         (credentials) => CredentialsState.loadSuccess(credentials),
-      ),
-    );
-  }
-
-  Future<void> _mapSavedToState(CredentialsEventSaved event, Emitter<CredentialsState> emit) async {
-    emit(const CredentialsState.saveInProgress());
-    final resultEither = await credentialsSaveUseCase.save(event.credentials);
-    emit(
-      resultEither.fold(
-        (error) => CredentialsState.saveFailure(error),
-        (result) => result
-            ? const CredentialsState.saveSuccess()
-            : CredentialsState.saveFailure(StateError('Error Save Credentials')),
       ),
     );
   }

@@ -57,7 +57,10 @@ class AppRouterDelegate extends RouterDelegate<AppRouteState>
     return [
       MaterialPage<void>(
         key: const ValueKey('LoginScreen'),
-        child: LoginPage(authBloc: appRouteBloc.authBloc),
+        child: LoginPage(
+          authBloc: appRouteBloc.authBloc,
+          credentialsBloc: appRouteBloc.credentialsBloc,
+        ),
       ),
     ];
   }

@@ -2,15 +2,15 @@ import 'dart:async';
 
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
+import 'package:flutter_junior_surf/login/domain/use_cases/credentials_save_use_case.dart';
 
 class AppUser {
-  AppUser(this.authRepository) {
-    _loggedIn = StreamController.broadcast(
-      onListen: _onLoggedInListen
-    );
+  AppUser({required this.authRepository, required this.credentialsSaveUseCase}) {
+    _loggedIn = StreamController.broadcast(onListen: _onLoggedInListen);
   }
 
   final AuthRepository authRepository;
+  final CredentialsSaveUseCase credentialsSaveUseCase;
   late final StreamController<bool> _loggedIn;
   Credentials _credentials = const NullCredentials();
 
@@ -31,6 +31,7 @@ class AppUser {
     if (result.getOrElse(() => false)) {
       _credentials = credentials;
       _loggedIn.add(true);
+      await credentialsSaveUseCase.save(credentials);
     } else {
       _loggedIn.add(false);
     }

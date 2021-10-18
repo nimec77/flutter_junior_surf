@@ -1,3 +1,4 @@
+import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
 import 'package:flutter_junior_surf/login/data/providers/auth_provider.dart';
 import 'package:flutter_junior_surf/login/data/repositories/auth_repository_imp.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
@@ -23,7 +24,7 @@ void main() {
     });
 
     test('login failure test', () async {
-      final error = StateError('Login Error');
+      const error = LoginError.invalidCredentials();
       when(() => mockAuthProvider.login(any(), any())).thenThrow(error);
 
       final result = await authRepository.login(const Credentials(email: 'email', password: 'password'));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/validators/email_and_password_validators.dart';
 import 'package:flutter_junior_surf/login/presentation/common_widget/login_button.dart';
 import 'package:flutter_junior_surf/login/presentation/constants.dart';
@@ -8,9 +9,11 @@ import 'package:sizer/sizer.dart';
 typedef OnLoginPressed = void Function(String email, String password);
 
 class LoginCart extends StatefulWidget with EmailAndPasswordValidators {
-  LoginCart({Key? key, required this.enabled, required this.onLoginPressed}) : super(key: key);
+  LoginCart({Key? key, required this.enabled, required this.credentials, required this.onLoginPressed})
+      : super(key: key);
 
   final bool enabled;
+  final Credentials credentials;
   final OnLoginPressed onLoginPressed;
 
   @override
@@ -20,8 +23,8 @@ class LoginCart extends StatefulWidget with EmailAndPasswordValidators {
 class _LoginCartState extends State<LoginCart> {
   final _loginFormKey = GlobalKey<FormState>();
   final _scrollController = ScrollController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   var _emailFirstEnter = true;
@@ -29,6 +32,14 @@ class _LoginCartState extends State<LoginCart> {
 
   @override
   void initState() {
+    debugPrint(widget.credentials.toString());
+    if (widget.credentials is! NullCredentials) {
+      _emailController = TextEditingController(text: widget.credentials.email);
+      _passwordController = TextEditingController(text: widget.credentials.password);
+    } else {
+      _emailController = TextEditingController();
+      _passwordController = TextEditingController();
+    }
     super.initState();
   }
 
@@ -114,7 +125,7 @@ class _LoginCartState extends State<LoginCart> {
                 LoginButton(
                   key: kLoginButtonKey,
                   enabled: widget.enabled && _formIsValidated(),
-                  onPressed:() => widget.onLoginPressed(_emailController.text, _passwordController.text),
+                  onPressed: () => widget.onLoginPressed(_emailController.text, _passwordController.text),
                   child: Text(
                     l10n.loginButtonText,
                     style: TextStyle(fontSize: 14.sp),

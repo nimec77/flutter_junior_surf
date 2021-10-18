@@ -3,15 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
+import 'package:flutter_junior_surf/login/presentation/blocs/credentials_bloc.dart';
 import 'package:flutter_junior_surf/login/presentation/common_widget/login_background.dart';
 import 'package:flutter_junior_surf/login/presentation/constants.dart';
 import 'package:flutter_junior_surf/login/presentation/widgets/login_cart.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key, required this.authBloc}) : super(key: key);
+  const LoginPage({Key? key, required this.authBloc, required this.credentialsBloc}) : super(key: key);
 
   final AuthBloc authBloc;
+  final CredentialsBloc credentialsBloc;
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -25,7 +27,13 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     _top = kDefaultTop.h;
     _bottom = 0.0;
+    widget.credentialsBloc.add(const CredentialsEvent.loaded());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -51,19 +59,29 @@ class _LoginPageState extends State<LoginPage> {
             curve: Curves.easeInOut,
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: _top),
-            child: BlocBuilder<AuthBloc, AuthState>(
-              bloc: widget.authBloc,
+            child: BlocBuilder<CredentialsBloc, CredentialsState>(
+              bloc: widget.credentialsBloc,
               builder: (context, state) {
-                final enabled = state.maybeMap(
-                  notAuthorized: (_) => true,
-                  failed: (_) => true,
-                  orElse: () => false,
+                final credentials = state.when(
+                  loadSuccess: (value) => value,
+                  loadFailure: (_) => const NullCredentials(),
                 );
-                return LoginCart(
-                    enabled: enabled,
-                    onLoginPressed: (email, password) {
-                      widget.authBloc.add(AuthEvent.loginStarted(Credentials(email: email, password: password)));
-                    });
+                return BlocBuilder<AuthBloc, AuthState>(
+                  bloc: widget.authBloc,
+                  builder: (context, state) {
+                    final enabled = state.maybeMap(
+                      notAuthorized: (_) => true,
+                      failed: (_) => true,
+                      orElse: () => false,
+                    );
+                    return LoginCart(
+                        enabled: enabled,
+                        credentials: credentials,
+                        onLoginPressed: (email, password) {
+                          widget.authBloc.add(AuthEvent.loginStarted(Credentials(email: email, password: password)));
+                        });
+                  },
+                );
               },
             ),
           ),

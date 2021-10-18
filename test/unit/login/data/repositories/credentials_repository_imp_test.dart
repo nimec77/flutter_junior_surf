@@ -18,9 +18,10 @@ void main() {
 
   group('CredentialsRepository test', () {
     test('loadCredentials success test', () async {
+      when(mockCredentialsProvider.init).thenAnswer((_) => Future.value());
       when(mockCredentialsProvider.loadCredentials).thenReturn(credentials);
 
-      final result = credentialsRepository.loadCredentials();
+      final result = await credentialsRepository.loadCredentials();
       expect(result, isA<EitherCredential>());
       expect(result.isRight(), true);
       expect(result | const NullCredentials(), credentials);
@@ -28,20 +29,24 @@ void main() {
       verify(mockCredentialsProvider.loadCredentials).called(1);
     });
 
-    test('loadCredentials failure test', () {
+    test('loadCredentials failure test', () async {
       final error = TypeError();
+      when(mockCredentialsProvider.init).thenAnswer((_) => Future.value());
       when(mockCredentialsProvider.loadCredentials).thenThrow(error);
 
-      final result = credentialsRepository.loadCredentials();
+      final result = await credentialsRepository.loadCredentials();
       expect(result, isA<EitherCredential>());
       expect(result.isLeft(), true);
       result.leftMap((l) {
         expect(l, error);
       });
+
+      verify(mockCredentialsProvider.init).called(1);
       verify(mockCredentialsProvider.loadCredentials).called(1);
     });
 
     test('saveCredentials success test', () async {
+      when(mockCredentialsProvider.init).thenAnswer((_) => Future.value());
       when(() => mockCredentialsProvider.saveCredentials(any())).thenAnswer((_) => Future.value(true));
 
       final result = await credentialsRepository.saveCredentials(credentials);
@@ -54,6 +59,7 @@ void main() {
 
     test('saveCredentials failure test', () async {
       final error = ArgumentError('Save Credentials Error');
+      when(mockCredentialsProvider.init).thenAnswer((_) => Future.value());
       when(() => mockCredentialsProvider.saveCredentials(any())).thenThrow(error);
 
       final result = await credentialsRepository.saveCredentials(credentials);
@@ -62,6 +68,8 @@ void main() {
       result.leftMap((l) {
         expect(l, error);
       });
+
+      verify(() => mockCredentialsProvider.saveCredentials(any())).called(1);
     });
   });
 }

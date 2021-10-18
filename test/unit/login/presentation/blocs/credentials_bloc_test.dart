@@ -34,7 +34,7 @@ void main() {
     blocTest<CredentialsBloc, CredentialsState>(
       'emit [loadSuccess] when event loaded successful',
       build: () {
-        when(mockCredentialsLoadUseCase.load).thenReturn(const Right(credentials));
+        when(mockCredentialsLoadUseCase.load).thenAnswer((_) => Future.value(const Right(credentials)));
         return CredentialsBloc(
           credentialsLoadUseCase: mockCredentialsLoadUseCase,
           credentialsSaveUseCase: mockCredentialsSaveUseCase,
@@ -50,7 +50,7 @@ void main() {
     blocTest<CredentialsBloc, CredentialsState>(
       'emit [loadFailure] when event loaded failure',
       build: () {
-        when(mockCredentialsLoadUseCase.load).thenReturn(Left(error));
+        when(mockCredentialsLoadUseCase.load).thenAnswer((_) => Future.value(Left(error)));
         return CredentialsBloc(
           credentialsLoadUseCase: mockCredentialsLoadUseCase,
           credentialsSaveUseCase: mockCredentialsSaveUseCase,
@@ -61,55 +61,6 @@ void main() {
         CredentialsState.loadFailure(error),
       ],
       verify: (_) => verify(mockCredentialsLoadUseCase.load).called(1),
-    );
-
-    blocTest<CredentialsBloc, CredentialsState>(
-      'emit [saveSuccess] when event saved successful',
-      build: () {
-        when(() => mockCredentialsSaveUseCase.save(any())).thenAnswer((_) => Future.value(const Right(true)));
-        return CredentialsBloc(
-          credentialsLoadUseCase: mockCredentialsLoadUseCase,
-          credentialsSaveUseCase: mockCredentialsSaveUseCase,
-        );
-      },
-      act: (credentialsBloc) => credentialsBloc.add(const CredentialsEvent.saved(credentials)),
-      expect: () => [
-        const CredentialsState.saveSuccess(),
-      ],
-      verify: (_) => verify(() => mockCredentialsSaveUseCase.save(any())).called(1),
-    );
-
-    blocTest<CredentialsBloc, CredentialsState>(
-      'emit [saveFailure] when event saved failed',
-      build: () {
-        when(() => mockCredentialsSaveUseCase.save(any())).thenAnswer((_) => Future.value(const Right(false)));
-        return CredentialsBloc(
-          credentialsLoadUseCase: mockCredentialsLoadUseCase,
-          credentialsSaveUseCase: mockCredentialsSaveUseCase,
-        );
-      },
-      act: (credentialsBloc) => credentialsBloc.add(const CredentialsEvent.saved(credentials)),
-      expect: () => [
-        isA<CredentialsStateSaveFailure>(),
-      ],
-      verify: (_) => verify(() => mockCredentialsSaveUseCase.save(any())).called(1),
-    );
-
-    blocTest<CredentialsBloc, CredentialsState>(
-      'emit [saveInProgress, saveFailure] when event saved error',
-      build: () {
-        when(() => mockCredentialsSaveUseCase.save(any())).thenAnswer((_) => Future.value(Left(error)));
-        return CredentialsBloc(
-          credentialsLoadUseCase: mockCredentialsLoadUseCase,
-          credentialsSaveUseCase: mockCredentialsSaveUseCase,
-        );
-      },
-      act: (credentialsBloc) => credentialsBloc.add(const CredentialsEvent.saved(credentials)),
-      expect: () => [
-        const CredentialsState.saveInProgress(),
-        CredentialsState.saveFailure(error),
-      ],
-      verify: (_) => verify(() => mockCredentialsSaveUseCase.save(any())).called(1),
     );
   });
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
+import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/presentation/common_widget/login_button.dart';
 import 'package:flutter_junior_surf/login/presentation/constants.dart';
 import 'package:flutter_junior_surf/login/presentation/widgets/login_cart.dart';
@@ -13,7 +14,7 @@ void main() {
       late final AppLocalizations l10n;
       final widget = Builder(builder: (context) {
         l10n = context.l10n;
-        return LoginCart(enabled: true, onLoginPressed: (_, __) {});
+        return LoginCart(enabled: true, credentials: const NullCredentials(), onLoginPressed: (_, __) {});
       });
       await tester.pumpSizerAndScaffold(widget);
 
