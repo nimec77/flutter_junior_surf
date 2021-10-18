@@ -30,6 +30,15 @@ void main() {
       expect(result | false, true);
     });
 
+    test('save failure test', () async {
+      when(() => mockCredentialsRepository.saveCredentials(any())).thenAnswer((_) => Future.value(const Right(false)));
+
+      final result = await credentialsSaveUseCase.save(credentials);
+      expect(result, isA<EitherBool>());
+      expect(result.isRight(), true);
+      expect(result | true, false);
+    });
+
     test('save provider failure test', () async {
       final error = ArgumentError('Save Error');
       when(() => mockCredentialsRepository.saveCredentials(any()))
