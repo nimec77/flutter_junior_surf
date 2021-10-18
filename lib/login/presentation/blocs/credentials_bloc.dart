@@ -17,7 +17,7 @@ class CredentialsBloc extends Bloc<CredentialsEvent, CredentialsState> {
   CredentialsBloc({
     required this.credentialsLoadUseCase,
     required this.credentialsSaveUseCase,
-  }) : super(const CredentialsState.loadSuccess(NullCredentials())) {
+  }) : super(const CredentialsState.init()) {
     on<CredentialsEventLoaded>(_mapLoadedToState);
   }
 

@@ -181,6 +181,10 @@ abstract class CredentialsEventLoaded implements CredentialsEvent {
 class _$CredentialsStateTearOff {
   const _$CredentialsStateTearOff();
 
+  CredentialsStateInit init() {
+    return const CredentialsStateInit();
+  }
+
   CredentialsStateLoadSuccess loadSuccess(Credentials credentials) {
     return CredentialsStateLoadSuccess(
       credentials,
@@ -201,18 +205,21 @@ const $CredentialsState = _$CredentialsStateTearOff();
 mixin _$CredentialsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function(Credentials credentials) loadSuccess,
     required TResult Function(Error error) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
     required TResult orElse(),
@@ -220,18 +227,21 @@ mixin _$CredentialsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(CredentialsStateInit value) init,
     required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
     required TResult Function(CredentialsStateLoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
     required TResult orElse(),
@@ -254,6 +264,117 @@ class _$CredentialsStateCopyWithImpl<$Res>
   final CredentialsState _value;
   // ignore: unused_field
   final $Res Function(CredentialsState) _then;
+}
+
+/// @nodoc
+abstract class $CredentialsStateInitCopyWith<$Res> {
+  factory $CredentialsStateInitCopyWith(CredentialsStateInit value,
+          $Res Function(CredentialsStateInit) then) =
+      _$CredentialsStateInitCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CredentialsStateInitCopyWithImpl<$Res>
+    extends _$CredentialsStateCopyWithImpl<$Res>
+    implements $CredentialsStateInitCopyWith<$Res> {
+  _$CredentialsStateInitCopyWithImpl(
+      CredentialsStateInit _value, $Res Function(CredentialsStateInit) _then)
+      : super(_value, (v) => _then(v as CredentialsStateInit));
+
+  @override
+  CredentialsStateInit get _value => super._value as CredentialsStateInit;
+}
+
+/// @nodoc
+
+class _$CredentialsStateInit implements CredentialsStateInit {
+  const _$CredentialsStateInit();
+
+  @override
+  String toString() {
+    return 'CredentialsState.init()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CredentialsStateInit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(Credentials credentials) loadSuccess,
+    required TResult Function(Error error) loadFailure,
+  }) {
+    return init();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(Credentials credentials)? loadSuccess,
+    TResult Function(Error error)? loadFailure,
+  }) {
+    return init?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(Credentials credentials)? loadSuccess,
+    TResult Function(Error error)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CredentialsStateInit value) init,
+    required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
+    required TResult Function(CredentialsStateLoadFailure value) loadFailure,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
+    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
+    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
+    TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
+    TResult Function(CredentialsStateLoadFailure value)? loadFailure,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CredentialsStateInit implements CredentialsState {
+  const factory CredentialsStateInit() = _$CredentialsStateInit;
 }
 
 /// @nodoc
@@ -324,6 +445,7 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function(Credentials credentials) loadSuccess,
     required TResult Function(Error error) loadFailure,
   }) {
@@ -333,6 +455,7 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
   }) {
@@ -342,6 +465,7 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
     required TResult orElse(),
@@ -355,6 +479,7 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(CredentialsStateInit value) init,
     required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
     required TResult Function(CredentialsStateLoadFailure value) loadFailure,
   }) {
@@ -364,6 +489,7 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
   }) {
@@ -373,6 +499,7 @@ class _$CredentialsStateLoadSuccess implements CredentialsStateLoadSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
     required TResult orElse(),
@@ -461,6 +588,7 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function(Credentials credentials) loadSuccess,
     required TResult Function(Error error) loadFailure,
   }) {
@@ -470,6 +598,7 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
   }) {
@@ -479,6 +608,7 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Credentials credentials)? loadSuccess,
     TResult Function(Error error)? loadFailure,
     required TResult orElse(),
@@ -492,6 +622,7 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(CredentialsStateInit value) init,
     required TResult Function(CredentialsStateLoadSuccess value) loadSuccess,
     required TResult Function(CredentialsStateLoadFailure value) loadFailure,
   }) {
@@ -501,6 +632,7 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
   }) {
@@ -510,6 +642,7 @@ class _$CredentialsStateLoadFailure implements CredentialsStateLoadFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(CredentialsStateInit value)? init,
     TResult Function(CredentialsStateLoadSuccess value)? loadSuccess,
     TResult Function(CredentialsStateLoadFailure value)? loadFailure,
     required TResult orElse(),

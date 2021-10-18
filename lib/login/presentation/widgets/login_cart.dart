@@ -23,8 +23,8 @@ class LoginCart extends StatefulWidget with EmailAndPasswordValidators {
 class _LoginCartState extends State<LoginCart> {
   final _loginFormKey = GlobalKey<FormState>();
   final _scrollController = ScrollController();
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   var _emailFirstEnter = true;
@@ -32,14 +32,6 @@ class _LoginCartState extends State<LoginCart> {
 
   @override
   void initState() {
-    debugPrint(widget.credentials.toString());
-    if (widget.credentials is! NullCredentials) {
-      _emailController = TextEditingController(text: widget.credentials.email);
-      _passwordController = TextEditingController(text: widget.credentials.password);
-    } else {
-      _emailController = TextEditingController();
-      _passwordController = TextEditingController();
-    }
     super.initState();
   }
 
@@ -49,6 +41,17 @@ class _LoginCartState extends State<LoginCart> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant LoginCart oldWidget) {
+    if (oldWidget.credentials is NullCredentials && oldWidget.credentials != widget.credentials) {
+      _emailController.text = widget.credentials.email;
+      _passwordController.text = widget.credentials.password;
+      _emailFirstEnter = false;
+      _passwordFirstEnter = false;
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -124,7 +127,7 @@ class _LoginCartState extends State<LoginCart> {
                 SizedBox(height: 7.5.h),
                 LoginButton(
                   key: kLoginButtonKey,
-                  enabled: widget.enabled && _formIsValidated(),
+                  enabled: _formIsValidated(),
                   onPressed: () => widget.onLoginPressed(_emailController.text, _passwordController.text),
                   child: Text(
                     l10n.loginButtonText,
@@ -144,7 +147,6 @@ class _LoginCartState extends State<LoginCart> {
     if (form == null) {
       return false;
     }
-
     return form.validate() && !_emailFirstEnter && !_passwordFirstEnter;
   }
 }

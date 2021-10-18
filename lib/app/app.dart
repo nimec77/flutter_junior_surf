@@ -19,7 +19,6 @@ import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/ports/credentials_repository.dart';
 import 'package:flutter_junior_surf/login/domain/use_cases/credentials_load_use_case.dart';
 import 'package:flutter_junior_surf/login/domain/use_cases/credentials_save_use_case.dart';
-import 'package:flutter_junior_surf/login/domain/validators/email_and_password_validators.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/credentials_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

@@ -28,7 +28,7 @@ void main() {
             credentialsLoadUseCase: mockCredentialsLoadUseCase,
             credentialsSaveUseCase: mockCredentialsSaveUseCase,
           ).state,
-          const CredentialsState.loadSuccess(NullCredentials()));
+          const CredentialsState.init());
     });
 
     blocTest<CredentialsBloc, CredentialsState>(

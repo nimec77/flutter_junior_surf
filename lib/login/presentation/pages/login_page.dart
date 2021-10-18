@@ -50,7 +50,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: kLoginBackgroundColor,
       body: Stack(
-        // fit: StackFit.expand,
         alignment: Alignment.topCenter,
         children: [
           LoginBackground(text: l10n.loginPageText),
@@ -61,10 +60,13 @@ class _LoginPageState extends State<LoginPage> {
             margin: EdgeInsets.only(top: _top),
             child: BlocBuilder<CredentialsBloc, CredentialsState>(
               bloc: widget.credentialsBloc,
+              buildWhen: (previousState, state) {
+                return previousState is CredentialsStateInit && state is CredentialsStateLoadSuccess;
+              },
               builder: (context, state) {
-                final credentials = state.when(
+                final credentials = state.maybeWhen(
                   loadSuccess: (value) => value,
-                  loadFailure: (_) => const NullCredentials(),
+                  orElse: () => const NullCredentials(),
                 );
                 return BlocBuilder<AuthBloc, AuthState>(
                   bloc: widget.authBloc,
