@@ -14,7 +14,7 @@ class CredentialsLoadUseCase {
       (credentials) {
         if (!emailAndPasswordValidators.emailValidator.isValid(credentials.email) ||
             !emailAndPasswordValidators.passwordValidator.isValid(credentials.password)) {
-          return Left(StateError('Credentials is invalid'));
+          return Left(StateError('Invalid credentials'));
         }
         return Right(credentials);
       },

@@ -12,7 +12,7 @@ class CredentialsSaveUseCase {
   Future<EitherBool> save(Credentials credentials) async {
     if (!emailAndPasswordValidators.emailValidator.isValid(credentials.email) ||
         !emailAndPasswordValidators.passwordValidator.isValid(credentials.password)) {
-      return Left(ArgumentError('Credentials is invalid'));
+      return Left(ArgumentError('Invalid credentials'));
     }
     return credentialsRepository.saveCredentials(credentials);
   }
