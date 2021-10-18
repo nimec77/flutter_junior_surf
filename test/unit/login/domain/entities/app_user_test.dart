@@ -48,7 +48,7 @@ void main() {
       expect(result, isA<EitherBool>());
       expect(result.isRight(), true);
       expect(result | true, false);
-      expect(appUser!.credentials, const EmptyCredentials());
+      expect(appUser!.credentials, const NullCredentials());
       final loggedIn = await appUser!.loggedIn.first;
       expect(loggedIn, false);
       verify(() => mockAuthRepository.login(any())).called(1);
@@ -65,7 +65,7 @@ void main() {
       result.leftMap((l) {
         expect(l, const LoginError.invalidCredentials());
       });
-      expect(appUser!.credentials, const EmptyCredentials());
+      expect(appUser!.credentials, const NullCredentials());
       final loggedIn = await appUser!.loggedIn.first;
       expect(loggedIn, false);
       verify(() => mockAuthRepository.login(any())).called(1);
@@ -80,7 +80,7 @@ void main() {
       await appUser!.logout();
       final loggedIn = await appUser!.loggedIn.first;
       expect(loggedIn, false);
-      expect(appUser!.credentials, const EmptyCredentials());
+      expect(appUser!.credentials, const NullCredentials());
       verify(() => mockAuthRepository.login(any())).called(1);
       verify(mockAuthRepository.logout).called(1);
     });
@@ -89,11 +89,11 @@ void main() {
       when(mockAuthRepository.logout).thenAnswer((_) => Future.value());
       final initialLoggedIn = await appUser!.loggedIn.first;
       expect(initialLoggedIn, false);
-      expect(appUser!.credentials, const EmptyCredentials());
+      expect(appUser!.credentials, const NullCredentials());
       await appUser!.logout();
       final loggedIn = await appUser!.loggedIn.first;
       expect(loggedIn, false);
-      expect(appUser!.credentials, const EmptyCredentials());
+      expect(appUser!.credentials, const NullCredentials());
       verifyNever(mockAuthRepository.logout);
     });
   });

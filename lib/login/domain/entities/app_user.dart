@@ -12,7 +12,7 @@ class AppUser {
 
   final AuthRepository authRepository;
   late final StreamController<bool> _loggedIn;
-  Credentials _credentials = const EmptyCredentials();
+  Credentials _credentials = const NullCredentials();
 
   Credentials get credentials => _credentials;
 
@@ -23,7 +23,7 @@ class AppUser {
   }
 
   void _onLoggedInListen() {
-    _loggedIn.add(_credentials is! EmptyCredentials);
+    _loggedIn.add(_credentials is! NullCredentials);
   }
 
   Future<EitherBool> login(Credentials credentials) async {
@@ -39,11 +39,11 @@ class AppUser {
   }
 
   Future<void> logout() async {
-    if (_credentials is EmptyCredentials) {
+    if (_credentials is NullCredentials) {
       return;
     }
     await authRepository.logout();
-    _credentials = const EmptyCredentials();
+    _credentials = const NullCredentials();
     _loggedIn.add(false);
   }
 }
