@@ -5,7 +5,7 @@ typedef EitherBool = Either<Error, bool>;
 typedef EitherCredential = Either<Error, Credentials>;
 
 abstract class CredentialsRepository {
-  Future<EitherBool> saveCredentials(Credentials credentials);
-
   EitherCredential loadCredentials();
+
+  Future<EitherBool> saveCredentials(Credentials credentials);
 }

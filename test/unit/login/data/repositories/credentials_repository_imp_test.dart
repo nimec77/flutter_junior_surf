@@ -16,7 +16,7 @@ void main() {
     registerFallbackValue<Credentials>(const NullCredentials());
   });
 
-  group('CredentialsRepository', () {
+  group('CredentialsRepository test', () {
     test('loadCredentials success test', () async {
       when(mockCredentialsProvider.loadCredentials).thenReturn(credentials);
 

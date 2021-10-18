@@ -11,7 +11,7 @@ void main() {
   final mockAuthProvider = MockAuthProvider();
   final authRepository = AuthRepositoryImp(mockAuthProvider);
 
-  group('AuthRepository ', () {
+  group('AuthRepository test', () {
     test('login success test', () async {
       when(() => mockAuthProvider.login(any(), any())).thenAnswer((_) => Future.value(true));
 
