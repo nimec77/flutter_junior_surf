@@ -9,6 +9,7 @@ import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
 import 'package:flutter_junior_surf/users/domain/entities/user.dart';
 import 'package:flutter_junior_surf/users/presentation/common_widgets/user_title.dart';
+import 'package:flutter_junior_surf/users/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class UsersList extends StatefulWidget {
@@ -71,6 +72,7 @@ class _UsersListState extends State<UsersList> {
           SliverAppBar(
             actions: [
               IconButton(
+                key: kUsersLogoutButtonKey,
                 onPressed: () => widget.authBloc.add(const AuthEvent.logout()),
                 icon: const Icon(Icons.exit_to_app),
                 color: Colors.black,
