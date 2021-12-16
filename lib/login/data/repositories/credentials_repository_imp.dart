@@ -5,10 +5,10 @@ import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/credentials_repository.dart';
 
 class CredentialsRepositoryImp implements CredentialsRepository {
-  CredentialsRepositoryImp(this.credentialsProvider);
-
   final CredentialsProvider credentialsProvider;
   var _initialized = false;
+
+  CredentialsRepositoryImp(this.credentialsProvider);
 
   @override
   Future<EitherCredential> loadCredentials() async {
@@ -18,6 +18,7 @@ class CredentialsRepositoryImp implements CredentialsRepository {
         _initialized = true;
       }
       final result = credentialsProvider.loadCredentials();
+
       return Right(result);
     } on TypeError catch(error) {
       return Left(error);
@@ -32,6 +33,7 @@ class CredentialsRepositoryImp implements CredentialsRepository {
         _initialized = true;
       }
        final result = await credentialsProvider.saveCredentials(credentials);
+
        return Right(result);
     } on ArgumentError catch(error) {
       return Left(error);

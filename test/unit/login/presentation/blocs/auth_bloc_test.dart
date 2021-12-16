@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
@@ -27,8 +26,10 @@ void main() {
       build: () {
         when(() => mockAppUser.login(any())).thenAnswer((_) {
           mockAppUser.isLoggedIn = true;
+
           return Future.value(const Right(true));
         });
+
         return AuthBloc(mockAppUser);
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password'))),
@@ -44,8 +45,10 @@ void main() {
       build: () {
         when(() => mockAppUser.login(any())).thenAnswer((_) {
           mockAppUser.isLoggedIn = false;
+
           return Future.value(const Right(false));
         });
+
         return AuthBloc(mockAppUser);
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password'))),
@@ -62,6 +65,7 @@ void main() {
         when(() => mockAppUser.login(any()))
             .thenAnswer((_) => Future.value(const Left(LoginError.invalidCredentials())));
         mockAppUser.isLoggedIn = false;
+
         return AuthBloc(mockAppUser);
       },
       act: (authBloc) => authBloc.add(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password'))),
@@ -77,8 +81,10 @@ void main() {
       build: () {
         when(mockAppUser.logout).thenAnswer((_) {
           mockAppUser.isLoggedIn = false;
+
           return Future.value();
         });
+
         return AuthBloc(mockAppUser);
       },
       act: (authBloc) => authBloc.add(const AuthEvent.logout()),

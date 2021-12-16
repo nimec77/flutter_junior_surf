@@ -1,3 +1,5 @@
+//ignore_for_file: prefer_mixin
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -8,6 +10,18 @@ import 'package:flutter_junior_surf/users/presentation/pages/users_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<AppRouteState>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<AppRouteState> {
+
+  final AppRouteBloc appRouteBloc;
+  late final StreamSubscription _appRouteBlocSubscription;
+
+  @override
+  GlobalKey<NavigatorState> navigatorKey;
+
+  @override
+  AppRouteState get currentConfiguration => _state;
+
+  var _state = const AppRouteState.users();
+
   AppRouterDelegate(this.appRouteBloc) : navigatorKey = GlobalKey<NavigatorState>() {
     _appRouteBlocSubscription = appRouteBloc.stream.listen((state) {
       _state = state;
@@ -16,20 +30,10 @@ class AppRouterDelegate extends RouterDelegate<AppRouteState>
   }
 
   @override
-  GlobalKey<NavigatorState> navigatorKey;
-
-  final AppRouteBloc appRouteBloc;
-  late final StreamSubscription _appRouteBlocSubscription;
-  var _state = const AppRouteState.users();
-
-  @override
   void dispose() {
     _appRouteBlocSubscription.cancel();
     super.dispose();
   }
-
-  @override
-  AppRouteState get currentConfiguration => _state;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +46,22 @@ class AppRouterDelegate extends RouterDelegate<AppRouteState>
             login: _loginScreenPage,
             users: _usersScreenPage,
           ),
+          //ignore: avoid_annotating_with_dynamic
           onPopPage: (route, dynamic result) {
             if (!route.didPop(result)) {
               return false;
             }
+
             return true;
           },
         );
       },
     );
+  }
+
+  @override
+  Future<void> setNewRoutePath(AppRouteState configuration) async {
+    _state = configuration;
   }
 
   List<Page<void>> _loginScreenPage(AppRouteState state) {
@@ -72,10 +83,5 @@ class AppRouterDelegate extends RouterDelegate<AppRouteState>
         child: UsersPage(authBloc: appRouteBloc.authBloc),
       ),
     ];
-  }
-
-  @override
-  Future<void> setNewRoutePath(AppRouteState configuration) async {
-    _state = configuration;
   }
 }

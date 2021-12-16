@@ -32,27 +32,32 @@ mixin _$UsersEvent {
     required TResult Function() started,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UsersEventStarted value) started,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UsersEventStarted value)? started,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UsersEventStarted value)? started,
@@ -63,9 +68,7 @@ mixin _$UsersEvent {
 
 /// @nodoc
 abstract class $UsersEventCopyWith<$Res> {
-  factory $UsersEventCopyWith(
-          UsersEvent value, $Res Function(UsersEvent) then) =
-      _$UsersEventCopyWithImpl<$Res>;
+  factory $UsersEventCopyWith(UsersEvent value, $Res Function(UsersEvent) then) = _$UsersEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -73,23 +76,21 @@ class _$UsersEventCopyWithImpl<$Res> implements $UsersEventCopyWith<$Res> {
   _$UsersEventCopyWithImpl(this._value, this._then);
 
   final UsersEvent _value;
+
   // ignore: unused_field
   final $Res Function(UsersEvent) _then;
 }
 
 /// @nodoc
 abstract class $UsersEventStartedCopyWith<$Res> {
-  factory $UsersEventStartedCopyWith(
-          UsersEventStarted value, $Res Function(UsersEventStarted) then) =
+  factory $UsersEventStartedCopyWith(UsersEventStarted value, $Res Function(UsersEventStarted) then) =
       _$UsersEventStartedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UsersEventStartedCopyWithImpl<$Res>
-    extends _$UsersEventCopyWithImpl<$Res>
+class _$UsersEventStartedCopyWithImpl<$Res> extends _$UsersEventCopyWithImpl<$Res>
     implements $UsersEventStartedCopyWith<$Res> {
-  _$UsersEventStartedCopyWithImpl(
-      UsersEventStarted _value, $Res Function(UsersEventStarted) _then)
+  _$UsersEventStartedCopyWithImpl(UsersEventStarted _value, $Res Function(UsersEventStarted) _then)
       : super(_value, (v) => _then(v as UsersEventStarted));
 
   @override
@@ -108,8 +109,7 @@ class _$UsersEventStarted implements UsersEventStarted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UsersEventStarted);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is UsersEventStarted);
   }
 
   @override
@@ -209,6 +209,7 @@ mixin _$UsersState {
     required TResult Function(Exception exception) failure,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inProgress,
@@ -216,6 +217,7 @@ mixin _$UsersState {
     TResult Function(Exception exception)? failure,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inProgress,
@@ -224,6 +226,7 @@ mixin _$UsersState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UsersStateInProgress value) inProgress,
@@ -231,6 +234,7 @@ mixin _$UsersState {
     required TResult Function(UsersStateFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UsersStateInProgress value)? inProgress,
@@ -238,6 +242,7 @@ mixin _$UsersState {
     TResult Function(UsersStateFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UsersStateInProgress value)? inProgress,
@@ -250,9 +255,7 @@ mixin _$UsersState {
 
 /// @nodoc
 abstract class $UsersStateCopyWith<$Res> {
-  factory $UsersStateCopyWith(
-          UsersState value, $Res Function(UsersState) then) =
-      _$UsersStateCopyWithImpl<$Res>;
+  factory $UsersStateCopyWith(UsersState value, $Res Function(UsersState) then) = _$UsersStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -260,23 +263,21 @@ class _$UsersStateCopyWithImpl<$Res> implements $UsersStateCopyWith<$Res> {
   _$UsersStateCopyWithImpl(this._value, this._then);
 
   final UsersState _value;
+
   // ignore: unused_field
   final $Res Function(UsersState) _then;
 }
 
 /// @nodoc
 abstract class $UsersStateInProgressCopyWith<$Res> {
-  factory $UsersStateInProgressCopyWith(UsersStateInProgress value,
-          $Res Function(UsersStateInProgress) then) =
+  factory $UsersStateInProgressCopyWith(UsersStateInProgress value, $Res Function(UsersStateInProgress) then) =
       _$UsersStateInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UsersStateInProgressCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res>
+class _$UsersStateInProgressCopyWithImpl<$Res> extends _$UsersStateCopyWithImpl<$Res>
     implements $UsersStateInProgressCopyWith<$Res> {
-  _$UsersStateInProgressCopyWithImpl(
-      UsersStateInProgress _value, $Res Function(UsersStateInProgress) _then)
+  _$UsersStateInProgressCopyWithImpl(UsersStateInProgress _value, $Res Function(UsersStateInProgress) _then)
       : super(_value, (v) => _then(v as UsersStateInProgress));
 
   @override
@@ -295,8 +296,7 @@ class _$UsersStateInProgress implements UsersStateInProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UsersStateInProgress);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is UsersStateInProgress);
   }
 
   @override
@@ -377,18 +377,16 @@ abstract class UsersStateInProgress implements UsersState {
 
 /// @nodoc
 abstract class $UsersStateSuccessCopyWith<$Res> {
-  factory $UsersStateSuccessCopyWith(
-          UsersStateSuccess value, $Res Function(UsersStateSuccess) then) =
+  factory $UsersStateSuccessCopyWith(UsersStateSuccess value, $Res Function(UsersStateSuccess) then) =
       _$UsersStateSuccessCopyWithImpl<$Res>;
+
   $Res call({Iterable<User> users});
 }
 
 /// @nodoc
-class _$UsersStateSuccessCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res>
+class _$UsersStateSuccessCopyWithImpl<$Res> extends _$UsersStateCopyWithImpl<$Res>
     implements $UsersStateSuccessCopyWith<$Res> {
-  _$UsersStateSuccessCopyWithImpl(
-      UsersStateSuccess _value, $Res Function(UsersStateSuccess) _then)
+  _$UsersStateSuccessCopyWithImpl(UsersStateSuccess _value, $Res Function(UsersStateSuccess) _then)
       : super(_value, (v) => _then(v as UsersStateSuccess));
 
   @override
@@ -429,8 +427,7 @@ class _$UsersStateSuccess implements UsersStateSuccess {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(users));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(users));
 
   @JsonKey(ignore: true)
   @override
@@ -510,25 +507,23 @@ abstract class UsersStateSuccess implements UsersState {
   const factory UsersStateSuccess(Iterable<User> users) = _$UsersStateSuccess;
 
   Iterable<User> get users;
+
   @JsonKey(ignore: true)
-  $UsersStateSuccessCopyWith<UsersStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UsersStateSuccessCopyWith<UsersStateSuccess> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UsersStateFailureCopyWith<$Res> {
-  factory $UsersStateFailureCopyWith(
-          UsersStateFailure value, $Res Function(UsersStateFailure) then) =
+  factory $UsersStateFailureCopyWith(UsersStateFailure value, $Res Function(UsersStateFailure) then) =
       _$UsersStateFailureCopyWithImpl<$Res>;
+
   $Res call({Exception exception});
 }
 
 /// @nodoc
-class _$UsersStateFailureCopyWithImpl<$Res>
-    extends _$UsersStateCopyWithImpl<$Res>
+class _$UsersStateFailureCopyWithImpl<$Res> extends _$UsersStateCopyWithImpl<$Res>
     implements $UsersStateFailureCopyWith<$Res> {
-  _$UsersStateFailureCopyWithImpl(
-      UsersStateFailure _value, $Res Function(UsersStateFailure) _then)
+  _$UsersStateFailureCopyWithImpl(UsersStateFailure _value, $Res Function(UsersStateFailure) _then)
       : super(_value, (v) => _then(v as UsersStateFailure));
 
   @override
@@ -565,8 +560,7 @@ class _$UsersStateFailure implements UsersStateFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UsersStateFailure &&
-            (identical(other.exception, exception) ||
-                other.exception == exception));
+            (identical(other.exception, exception) || other.exception == exception));
   }
 
   @override
@@ -634,23 +628,24 @@ class _$UsersStateFailure implements UsersStateFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    required TResult orElse(),
     TResult Function(UsersStateInProgress value)? inProgress,
     TResult Function(UsersStateSuccess value)? success,
     TResult Function(UsersStateFailure value)? failure,
-    required TResult orElse(),
   }) {
     if (failure != null) {
       return failure(this);
     }
+
     return orElse();
   }
 }
 
 abstract class UsersStateFailure implements UsersState {
-  const factory UsersStateFailure(Exception exception) = _$UsersStateFailure;
-
   Exception get exception;
+
   @JsonKey(ignore: true)
-  $UsersStateFailureCopyWith<UsersStateFailure> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UsersStateFailureCopyWith<UsersStateFailure> get copyWith => throw _privateConstructorUsedError;
+
+  const factory UsersStateFailure(Exception exception) = _$UsersStateFailure;
 }

@@ -28,6 +28,7 @@ void main() {
       'emit [inProgress, success] when event stated successful',
       build: () {
         when(mockUsersRepository.fetchUsers).thenAnswer((_) => Future.value(Right(users)));
+
         return UsersBloc(mockUsersRepository);
       },
       act: (usersBloc) => usersBloc.add(const UsersEvent.started()),
@@ -42,6 +43,7 @@ void main() {
       'emit [inProgress, failure] when event started failure',
       build: () {
         when(mockUsersRepository.fetchUsers).thenAnswer((_) => Future.value(Left(exception)));
+
         return UsersBloc(mockUsersRepository);
       },
       act: (usersBloc) => usersBloc.add(const UsersEvent.started()),

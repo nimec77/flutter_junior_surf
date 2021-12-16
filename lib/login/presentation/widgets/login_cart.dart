@@ -8,13 +8,14 @@ import 'package:sizer/sizer.dart';
 
 typedef OnLoginPressed = void Function(String email, String password);
 
+//ignore: prefer_mixin
 class LoginCart extends StatefulWidget with EmailAndPasswordValidators {
-  LoginCart({Key? key, required this.enabled, required this.credentials, required this.onLoginPressed})
-      : super(key: key);
-
   final bool enabled;
   final Credentials credentials;
   final OnLoginPressed onLoginPressed;
+
+  LoginCart({required this.enabled, required this.credentials, required this.onLoginPressed, Key? key})
+      : super(key: key);
 
   @override
   State<LoginCart> createState() => _LoginCartState();
@@ -87,6 +88,7 @@ class _LoginCartState extends State<LoginCart> {
                     if (_emailFirstEnter) {
                       return null;
                     }
+
                     return !widget.emailValidator.isValid(value) ? l10n.loginEmailError : null;
                   },
                   onChanged: (value) {
@@ -116,6 +118,7 @@ class _LoginCartState extends State<LoginCart> {
                     if (_passwordFirstEnter) {
                       return null;
                     }
+
                     return !widget.passwordValidator.isValid(value) ? l10n.loginPasswordError : null;
                   },
                   onChanged: (value) {
@@ -147,6 +150,7 @@ class _LoginCartState extends State<LoginCart> {
     if (form == null) {
       return false;
     }
+
     return form.validate() && !_emailFirstEnter && !_passwordFirstEnter;
   }
 }

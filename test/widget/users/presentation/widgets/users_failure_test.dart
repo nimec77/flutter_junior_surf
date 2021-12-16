@@ -20,6 +20,7 @@ void main() {
       final widget = Builder(
         builder: (context) {
           l10n = context.l10n;
+
           return UsersFailure(usersBloc: mockUsersBloc);
         },
       );

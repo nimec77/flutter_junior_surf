@@ -1,9 +1,7 @@
 import 'dart:math' as math;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_junior_surf/app/constants.dart';
 import 'package:flutter_junior_surf/l10n/l10n.dart';
 import 'package:flutter_junior_surf/login/presentation/blocs/auth_bloc.dart';
@@ -13,10 +11,10 @@ import 'package:flutter_junior_surf/users/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class UsersList extends StatefulWidget {
-  const UsersList({Key? key, required this.authBloc, required this.users}) : super(key: key);
-
   final AuthBloc authBloc;
   final Iterable<User> users;
+
+  const UsersList({required this.authBloc, required this.users, Key? key}) : super(key: key);
 
   @override
   State<UsersList> createState() => _UsersListState();
@@ -29,6 +27,17 @@ class _UsersListState extends State<UsersList> {
   late final double _toolbarHeight;
   double _collapsedPadding = 100;
   double _titlePadding = 15;
+
+  double get _horizontalTitlePadding {
+    if (_scrollController.hasClients) {
+      return math.min(
+        _basePadding + _collapsedPadding,
+        _basePadding + (_collapsedPadding * _scrollController.offset) / (_expandedHeight - _toolbarHeight),
+      );
+    }
+
+    return _basePadding;
+  }
 
   @override
   void initState() {
@@ -53,18 +62,10 @@ class _UsersListState extends State<UsersList> {
     super.dispose();
   }
 
-  double get _horizontalTitlePadding {
-    if (_scrollController.hasClients) {
-      return math.min(_basePadding + _collapsedPadding,
-          _basePadding + (_collapsedPadding * _scrollController.offset) / (_expandedHeight - _toolbarHeight));
-    }
-
-    return _basePadding;
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       body: CustomScrollView(
         controller: _scrollController,
@@ -108,6 +109,7 @@ class _UsersListState extends State<UsersList> {
     final textPainter =
         TextPainter(text: TextSpan(text: text, style: kTitleTextStyle), maxLines: 1, textDirection: TextDirection.ltr)
           ..layout();
+
     return textPainter.width;
   }
 }

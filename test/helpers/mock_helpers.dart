@@ -5,14 +5,7 @@ import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockAppUser extends Mock implements AppUser {
-  MockAppUser() {
-    _loggedIn = StreamController<bool>.broadcast(onListen: () {
-      _loggedIn.add(_isLoggedIn);
-    });
-  }
-
   late final StreamController<bool> _loggedIn;
-  bool _isLoggedIn = false;
 
   set isLoggedIn(bool value) {
     _isLoggedIn = value;
@@ -23,6 +16,15 @@ class MockAppUser extends Mock implements AppUser {
 
   @override
   Stream<bool> get loggedIn => _loggedIn.stream;
+
+  bool _isLoggedIn = false;
+
+  MockAppUser() {
+    _loggedIn = StreamController<bool>.broadcast(onListen: () {
+      _loggedIn.add(_isLoggedIn);
+    });
+  }
+
 
   @override
   void dispose() {

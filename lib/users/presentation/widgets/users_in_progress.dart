@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class UsersInProgress extends StatelessWidget {
-  const UsersInProgress({Key? key, this.value}) : super(key: key);
-
   final double? value;
+
+  const UsersInProgress({Key? key, this.value}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

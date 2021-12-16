@@ -10,10 +10,11 @@ import 'package:flutter_junior_surf/login/presentation/widgets/login_cart.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key, required this.authBloc, required this.credentialsBloc}) : super(key: key);
-
   final AuthBloc authBloc;
   final CredentialsBloc credentialsBloc;
+
+  const LoginPage({required this.authBloc, required this.credentialsBloc, Key? key}) : super(key: key);
+
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -42,11 +43,10 @@ class _LoginPageState extends State<LoginPage> {
 
     final newBottom = MediaQuery.of(context).viewInsets.bottom;
     if (newBottom != _bottom) {
-      setState(() {
-        _bottom = newBottom;
-        _top = _calcTopForLoginCart(_bottom);
-      });
+      _bottom = newBottom;
+      _top = _calcTopForLoginCart(_bottom);
     }
+
     return Scaffold(
       backgroundColor: kLoginBackgroundColor,
       body: Stack(
@@ -68,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                   loadSuccess: (value) => value,
                   orElse: () => const NullCredentials(),
                 );
+
                 return BlocBuilder<AuthBloc, AuthState>(
                   bloc: widget.authBloc,
                   builder: (context, state) {
@@ -76,12 +77,14 @@ class _LoginPageState extends State<LoginPage> {
                       failed: (_) => true,
                       orElse: () => false,
                     );
+
                     return LoginCart(
-                        enabled: enabled,
-                        credentials: credentials,
-                        onLoginPressed: (email, password) {
-                          widget.authBloc.add(AuthEvent.loginStarted(Credentials(email: email, password: password)));
-                        });
+                      enabled: enabled,
+                      credentials: credentials,
+                      onLoginPressed: (email, password) {
+                        widget.authBloc.add(AuthEvent.loginStarted(Credentials(email: email, password: password)));
+                      },
+                    );
                   },
                 );
               },
@@ -97,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
     final height = 100.h - kBottomMargin.h - kDefaultTop.h - bottom;
     if (height < kLoginCartSize.height.h) {
       final top = 100.h - cartHeight - kBottomMargin.h - bottom;
+
       return top;
     }
 

@@ -5,13 +5,16 @@ import 'package:flutter_junior_surf/users/data/pods/geo_pod.dart';
 import 'package:flutter_junior_surf/users/data/pods/user_pod.dart';
 
 class UserHelper {
-  UserHelper({int? seed}) : faker = Faker(seed: seed);
-
   final Faker faker;
-  int _id = 0;
 
   String get randomGeo =>
       ((faker.randomGenerator.boolean() ? 1 : -1) * faker.randomGenerator.decimal()).toStringAsFixed(4);
+
+  int _id = 0;
+
+  UserHelper({int? seed}) : faker = Faker(seed: seed);
+
+
 
   UserPod fakeUserPod() {
     final address = Address(
@@ -26,6 +29,7 @@ class UserHelper {
       catchPhrase: faker.lorem.sentence(),
       bs: faker.company.position(),
     );
+
     return UserPod(
       id: ++_id,
       username: faker.person.name(),

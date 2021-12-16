@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_junior_surf/app/route/app_route_bloc.dart';
 
 class AppRouteInformationParser extends RouteInformationParser<AppRouteState> {
-  AppRouteInformationParser(this.appRouteBloc);
-
   final AppRouteBloc appRouteBloc;
+
+  AppRouteInformationParser(this.appRouteBloc);
 
   @override
   Future<AppRouteState> parseRouteInformation(RouteInformation routeInformation) {
@@ -12,6 +12,7 @@ class AppRouteInformationParser extends RouteInformationParser<AppRouteState> {
 
     if (uri.pathSegments.isEmpty) {
       appRouteBloc.add(const AppRouteEvent.toUsers());
+
       return appRouteBloc.stream.first;
     }
 

@@ -12,6 +12,7 @@ void main() {
       final widget = Builder(
         builder: (context) {
           l10n = context.l10n;
+
           return RefreshButton(text: l10n.refreshButtonText);
         },
       );

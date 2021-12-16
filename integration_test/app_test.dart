@@ -1,3 +1,5 @@
+//ignore_for_file: long-method
+
 import 'package:flutter_junior_surf/login/presentation/constants.dart';
 import 'package:flutter_junior_surf/login/presentation/pages/login_page.dart';
 import 'package:flutter_junior_surf/main.dart' as app;

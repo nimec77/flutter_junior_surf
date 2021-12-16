@@ -5,25 +5,23 @@ import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
 import 'package:flutter_junior_surf/login/domain/use_cases/credentials_save_use_case.dart';
 
 class AppUser {
-  AppUser({required this.authRepository, required this.credentialsSaveUseCase}) {
-    _loggedIn = StreamController.broadcast(onListen: _onLoggedInListen);
-  }
-
   final AuthRepository authRepository;
   final CredentialsSaveUseCase credentialsSaveUseCase;
+
   late final StreamController<bool> _loggedIn;
-  Credentials _credentials = const NullCredentials();
 
   Credentials get credentials => _credentials;
 
   Stream<bool> get loggedIn => _loggedIn.stream;
 
-  void dispose() {
-    _loggedIn.close();
+  Credentials _credentials = const NullCredentials();
+
+  AppUser({required this.authRepository, required this.credentialsSaveUseCase}) {
+    _loggedIn = StreamController.broadcast(onListen: _onLoggedInListen);
   }
 
-  void _onLoggedInListen() {
-    _loggedIn.add(_credentials is! NullCredentials);
+  void dispose() {
+    _loggedIn.close();
   }
 
   Future<EitherBool> login(Credentials credentials) async {
@@ -47,4 +45,9 @@ class AppUser {
     _credentials = const NullCredentials();
     _loggedIn.add(false);
   }
+
+  void _onLoggedInListen() {
+    _loggedIn.add(_credentials is! NullCredentials);
+  }
+
 }

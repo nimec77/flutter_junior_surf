@@ -4,9 +4,10 @@ import 'package:sizer/sizer.dart';
 
 
 class LoginBackground extends StatelessWidget {
-  const LoginBackground({Key? key, required this.text}) : super(key: key);
-
   final String text;
+
+  const LoginBackground({required this.text, Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

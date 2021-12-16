@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({Key? key, required this.child, required this.enabled, this.onPressed}) : super(key: key);
-
   final Widget child;
   final bool enabled;
   final VoidCallback? onPressed;
+
+  const LoginButton({required this.child, required this.enabled, this.onPressed, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,7 @@ class LoginButton extends StatelessWidget {
             if (states.contains(MaterialState.disabled)) {
               return Theme.of(context).colorScheme.primary.withOpacity(0.5);
             }
+
             return Theme.of(context).colorScheme.primary;
           },
         ),

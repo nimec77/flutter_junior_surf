@@ -24,17 +24,19 @@ void main() {
   group('CredentialsBloc test', () {
     test('Initial state is loadSuccess(NullCredentials())', () {
       expect(
-          CredentialsBloc(
-            credentialsLoadUseCase: mockCredentialsLoadUseCase,
-            credentialsSaveUseCase: mockCredentialsSaveUseCase,
-          ).state,
-          const CredentialsState.init());
+        CredentialsBloc(
+          credentialsLoadUseCase: mockCredentialsLoadUseCase,
+          credentialsSaveUseCase: mockCredentialsSaveUseCase,
+        ).state,
+        const CredentialsState.init(),
+      );
     });
 
     blocTest<CredentialsBloc, CredentialsState>(
       'emit [loadSuccess] when event loaded successful',
       build: () {
         when(mockCredentialsLoadUseCase.load).thenAnswer((_) => Future.value(const Right(credentials)));
+
         return CredentialsBloc(
           credentialsLoadUseCase: mockCredentialsLoadUseCase,
           credentialsSaveUseCase: mockCredentialsSaveUseCase,
@@ -51,6 +53,7 @@ void main() {
       'emit [loadFailure] when event loaded failure',
       build: () {
         when(mockCredentialsLoadUseCase.load).thenAnswer((_) => Future.value(Left(error)));
+
         return CredentialsBloc(
           credentialsLoadUseCase: mockCredentialsLoadUseCase,
           credentialsSaveUseCase: mockCredentialsSaveUseCase,

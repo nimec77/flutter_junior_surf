@@ -5,13 +5,15 @@ import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_junior_surf/login/domain/ports/auth_repository.dart';
 
 class AuthRepositoryImp implements AuthRepository {
+  final AuthProvider authProvider;
+
   AuthRepositoryImp(this.authProvider);
 
-  final AuthProvider authProvider;
   @override
   Future<EitherBool> login(Credentials credentials) async {
     try {
       final result = await authProvider.login(credentials.email, credentials.password);
+
       return Right(result);
     } on LoginErrorInvalidCredentials catch(error) {
       return Left(error);

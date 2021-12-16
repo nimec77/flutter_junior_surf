@@ -16,5 +16,5 @@ final kAppThemeData = ThemeData(
   appBarTheme: kBaseTheme.appBarTheme.copyWith(
     titleTextStyle: kTitleTextStyle,
   ),
-  scaffoldBackgroundColor: Colors.white
+  scaffoldBackgroundColor: Colors.white,
 );

@@ -9,9 +9,9 @@ import 'package:flutter_junior_surf/users/presentation/widgets/users_in_progress
 import 'package:flutter_junior_surf/users/presentation/widgets/users_list.dart';
 
 class UsersPage extends StatefulWidget {
-  const UsersPage({Key? key, required this.authBloc}) : super(key: key);
-
   final AuthBloc authBloc;
+
+  const UsersPage({required this.authBloc, Key? key}) : super(key: key);
 
   @override
   State<UsersPage> createState() => _UsersPageState();

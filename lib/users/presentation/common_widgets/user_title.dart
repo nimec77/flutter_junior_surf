@@ -4,9 +4,9 @@ import 'package:flutter_junior_surf/users/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class UserTitle extends StatelessWidget {
-  const UserTitle({Key? key, required this.user}) : super(key: key);
-
   final User user;
+
+  const UserTitle({required this.user, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class UserTitle extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

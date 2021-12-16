@@ -6,13 +6,15 @@ import 'package:flutter_junior_surf/users/presentation/constants.dart';
 import 'package:sizer/sizer.dart';
 
 class UsersFailure extends StatelessWidget {
-  const UsersFailure({Key? key, required this.usersBloc}) : super(key: key);
-
   final UsersBloc usersBloc;
+
+  const UsersFailure({required this.usersBloc, Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
     return Scaffold(
       body: Center(
         child: Column(

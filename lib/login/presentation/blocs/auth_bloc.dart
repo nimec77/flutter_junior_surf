@@ -6,7 +6,6 @@ import 'package:flutter_junior_surf/login/data/errors/login_error.dart';
 import 'package:flutter_junior_surf/login/domain/entities/app_user.dart';
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'auth_bloc.freezed.dart';
 
@@ -15,6 +14,10 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  final AppUser appUser;
+
+  late final StreamSubscription<bool> _loggedInSubscription;
+
   AuthBloc(this.appUser) : super(const AuthState.notAuthorized()) {
     _loggedInSubscription = appUser.loggedIn
         .listen((isLoggedIn) => add(isLoggedIn ? const AuthEvent.loggedIn() : const AuthEvent.loggedOut()));
@@ -24,12 +27,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEventLoggedOut>(_mapLoggedOutToState);
   }
 
-  final AppUser appUser;
-  late final StreamSubscription<bool> _loggedInSubscription;
-
   @override
   Future<void> close() {
     _loggedInSubscription.cancel();
+
     return super.close();
   }
 
@@ -61,7 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     state.maybeMap(
       success: (_) => emit(const AuthState.notAuthorized()),
       inProgress: (_) => emit(const AuthState.notAuthorized()),
-      orElse: () {},
+      orElse: () => debugPrint('Nothing to do'),
     );
   }
 }

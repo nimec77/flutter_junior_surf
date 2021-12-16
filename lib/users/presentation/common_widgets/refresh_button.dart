@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class RefreshButton extends StatelessWidget {
-  const RefreshButton({Key? key, required this.text, this.onPressed}) : super(key: key);
-
   final String text;
   final VoidCallback? onPressed;
+
+  const RefreshButton({required this.text, this.onPressed, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
