@@ -13,7 +13,7 @@ void main() {
   final mockAppUser = MockAppUser();
 
   setUpAll(() {
-    registerFallbackValue<Credentials>(const Credentials(email: 'email', password: 'password'));
+    registerFallbackValue(const Credentials(email: 'email', password: 'password'));
   });
 
   group('AuthBloc test', () {

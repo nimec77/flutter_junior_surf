@@ -19,10 +19,10 @@ void main() {
   late final MockCredentialsBloc mockCredentialsBloc;
 
   setUpAll(() {
-    registerFallbackValue<AuthState>(const AuthState.notAuthorized());
-    registerFallbackValue<AuthEvent>(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password')));
-    registerFallbackValue<CredentialsState>(const CredentialsState.loadSuccess(NullCredentials()));
-    registerFallbackValue<CredentialsEvent>(const CredentialsEvent.loaded());
+    registerFallbackValue(const AuthState.notAuthorized());
+    registerFallbackValue(const AuthEvent.loginStarted(Credentials(email: 'email', password: 'password')));
+    registerFallbackValue(const CredentialsState.loadSuccess(NullCredentials()));
+    registerFallbackValue(const CredentialsEvent.loaded());
     mockAuthBlock = MockAuthBloc();
     mockCredentialsBloc = MockCredentialsBloc();
   });

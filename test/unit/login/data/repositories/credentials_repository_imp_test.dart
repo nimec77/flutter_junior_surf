@@ -13,7 +13,7 @@ void main() {
   final credentialsRepository = CredentialsRepositoryImp(mockCredentialsProvider);
 
   setUpAll(() {
-    registerFallbackValue<Credentials>(const NullCredentials());
+    registerFallbackValue(const NullCredentials());
   });
 
   group('CredentialsRepository test', () {

@@ -18,7 +18,7 @@ void main() {
   final mockCredentialsSaveUseCase = MockCredentialsSaveUseCase();
 
   setUpAll(() {
-    registerFallbackValue<Credentials>(const NullCredentials());
+    registerFallbackValue(const NullCredentials());
   });
 
   group('CredentialsBloc test', () {

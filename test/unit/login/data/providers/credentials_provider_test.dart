@@ -2,6 +2,7 @@ import 'package:flutter_junior_surf/login/data/providers/credentials_provider.da
 import 'package:flutter_junior_surf/login/domain/pods/credentials.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+/// На Apple Silicon данный тест проваливается с ошибкой: "Null check operator used on a null value"
 void main() {
   final credentialsProvider = CredentialsProvider();
 

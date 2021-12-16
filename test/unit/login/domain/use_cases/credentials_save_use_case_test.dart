@@ -13,7 +13,7 @@ void main() {
   final credentialsSaveUseCase = CredentialsSaveUseCase(credentialsRepository: mockCredentialsRepository);
 
   setUpAll(() {
-    registerFallbackValue<Credentials>(const NullCredentials());
+    registerFallbackValue(const NullCredentials());
   });
 
   group('CredentialsSaveUseCase test', () {

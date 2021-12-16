@@ -17,7 +17,7 @@ void main() {
   AppUser? appUser;
 
   setUpAll(() {
-    registerFallbackValue<Credentials>(const NullCredentials());
+    registerFallbackValue(const NullCredentials());
   });
 
   setUp(() {
